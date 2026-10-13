@@ -1,0 +1,1063 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>智能问数平台 · 脱敏交互原型</title>
+  <link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@400;500;600;700&amp;display=swap" />
+  <style>:root{--primary:#151c65;--ink:#1c2842;--muted:#8791a7;--line:#e7eaf3;--bg:#f0f2f8;--nav-width:218px;font-family:'Noto Sans SC','Microsoft YaHei',sans-serif;color:var(--ink);font-size:13px;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button,a{transition:background .15s,color .15s,box-shadow .15s}button{color:inherit}button:disabled{opacity:.45;cursor:default}button:focus-visible,a:focus-visible{outline:2px solid #768bfc;outline-offset:3px}button{border:0;background:none}a{text-decoration:none;color:inherit}input,select,textarea{border:1px solid #dfe4ef;border-radius:5px;background:white;color:#58647c;padding:8px 11px;min-width:0;outline:none}input:focus,select:focus,textarea:focus{border-color:#737bec;box-shadow:0 0 0 3px #747eed12}input::placeholder,textarea::placeholder{color:#a5adbd}select{padding-right:24px}h1,h2,h3,p{margin:0}h1{font-size:21px;line-height:1.5;letter-spacing:-.3px}h2{font-size:16px;line-height:1.6}h3{font-size:14px;margin-bottom:12px}p{line-height:1.85}small{font-size:11px}.muted{color:var(--muted)}.mono{font-family:Consolas,monospace;font-size:12px}.spacer{flex:1}.icon{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;vertical-align:middle}.icon.sm{width:15px;height:15px}.eyebrow{font-size:11px;letter-spacing:1px;color:#7d87a0}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:7px 12px;min-height:33px;border:1px solid #dfe4ef;border-radius:5px;background:#fff;white-space:nowrap;font-size:12px}.btn:hover{background:#f4f5fd;border-color:#c8ccea}.btn.primary{background:var(--primary);color:white;border-color:var(--primary)}.btn.primary:hover{filter:brightness(1.22)}.btn.quiet{border-color:transparent;background:transparent;color:#626ad3}.text-link{color:#5963e4;font-size:12px;padding:2px 4px;white-space:nowrap}.text-link:hover{color:var(--primary);text-decoration:underline}.text-link.warning{color:#c28b39}.badge{display:inline-block;border-radius:4px;padding:2px 7px;font-size:11px;white-space:nowrap;background:#edf1ff;color:#5264c7;border:1px solid #e3e9ff}.badge.green{background:#eff8ee;color:#5b9951;border-color:#e3f0de}.badge.amber{background:#fff6e8;color:#b5833e;border-color:#f5e5cd}.badge.red{background:#fff0f0;color:#cd7272;border-color:#fae0e0}.badge.gray{background:#f2f3f6;color:#8b93a1;border-color:#e9ebef}.subtle-badge{border:1px solid var(--line);border-radius:5px;padding:4px 8px;color:#929bb0;font-size:11px}
+.global-header{height:54px;position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;padding:0 24px 0 22px;gap:14px;background:var(--primary);color:#e7e9fb}.logo{width:180px;display:flex;align-items:center;gap:8px}.logo-symbol{font-size:30px;color:#fff}.logo b{font-size:21px;color:white;letter-spacing:1px}.logo b span{font-weight:400;color:#bac1f3}.global-header nav{display:flex;align-items:stretch;height:100%;gap:30px}.global-header nav>span,.global-header nav>a,.global-header nav>button{display:flex;align-items:center;font-size:12px;color:#b9bedf}.global-header nav .current{color:white;font-weight:600;position:relative}.global-header nav .current:after{content:'';position:absolute;bottom:10px;width:24px;height:2px;background:white;left:50%;transform:translateX(-50%)}.global-header nav button{padding:0}.demo-chip{background:#ffffff15;border:1px solid #ffffff2b;padding:3px 7px;border-radius:4px;font-size:10px}.header-icon{color:#dce0fb;padding:4px}.user-avatar{display:flex;align-items:center;justify-content:center;width:28px;height:28px;background:#7881c6;border:2px solid #ffffff35;border-radius:50%;color:white;font-size:11px}.global-header>span:last-child{font-size:12px}
+.sidebar{position:fixed;top:54px;bottom:0;left:0;width:var(--nav-width);background:white;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:20;transition:width .18s}.sidebar-title{display:flex;align-items:center;gap:9px;padding:22px 21px 17px;color:var(--primary);font-size:13px}.role-selector{margin:0 15px 12px;padding:9px 11px;border-radius:6px;background:#f6f7fb}.role-selector>span{display:block;font-size:10px;color:#939bb0;margin-bottom:4px}.role-selector select{border:0;background:transparent;padding:0;width:100%;font-size:12px;color:#53617b;box-shadow:none}.side-nav{overflow:auto;flex:1;padding:0 12px 14px;scrollbar-width:thin}.side-nav section{margin:2px 0 8px}.group-label{display:flex;align-items:center;width:100%;gap:9px;padding:11px 7px;font-size:12px;font-weight:600;color:#455575}.group-label>span:nth-child(2){flex:1;text-align:left}.chevron{color:#a0a9ba;display:block}.chevron .icon{width:12px;height:12px;transition:transform .2s}.chevron.down .icon{transform:rotate(90deg)}.nav-items{display:grid;gap:3px}.nav-items a{position:relative;display:flex;align-items:center;padding:10px 12px 10px 35px;border-radius:6px;color:#788398;font-size:12px;min-height:37px}.nav-items a span{flex:1}.nav-items a small{background:#e9ecf7;color:#7783a5;padding:1px 5px;border-radius:4px}.nav-items a:hover{background:#f7f8fc;color:var(--primary)}.nav-items a.active{background:#eeeffe;color:var(--primary);font-weight:600}.nav-items a.active:before{content:'';position:absolute;left:0;top:11px;bottom:11px;width:3px;border-radius:3px;background:var(--primary)}.sidebar-bottom{margin:6px 12px 12px;padding:6px 6px 6px 9px;border-radius:5px;background:#f5f6fa;display:flex;align-items:center;justify-content:space-between;font-size:10px;color:#8993a7}.sidebar-bottom button{padding:3px;color:#596584}.sidebar-bottom .icon{width:15px}.collapsed .sidebar-title{padding:20px 22px}.collapsed .group-label{justify-content:center;padding:12px 5px}.collapsed .sidebar-bottom{justify-content:center}
+.main{margin-left:var(--nav-width);padding-top:54px;min-height:100vh;background:var(--bg);transition:margin-left .18s}.opened-tabs{height:37px;display:flex;align-items:stretch;gap:0;padding:0 16px;background:#f8f9fc;border-bottom:1px solid #e8ebf3;overflow:auto;white-space:nowrap}.opened-tabs>div{display:flex;align-items:center;padding:0 11px;font-size:11px;color:#818b9f;gap:12px;border-right:1px solid #e9ecf4;margin:6px 0}.opened-tabs>div.active{background:#e9edf6;border:0;margin:0;color:var(--primary);font-weight:500}.opened-tabs a{padding:6px 0}.opened-tabs button{color:#8d97ad;padding:0;font-size:14px}.opened-tabs .tab-clean{font-size:10px;padding:0 8px;color:#9aa4b8;white-space:nowrap}.context-bar{display:flex;justify-content:space-between;align-items:center;padding:13px 24px;gap:18px;border-bottom:1px solid #eceef5;background:#ffffffc2}.context-bar>div{display:flex;gap:10px;font-size:11px;color:#8c96a9;align-items:center}.context-bar b{color:#66728b;font-weight:500}.context-bar i{font-style:normal;color:#b6bdca}.select-label{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:#78849a}.select-label select{min-width:145px;font-size:12px;height:33px}.context-bar select{width:165px;height:30px}.page-content{padding:22px 24px 35px;max-width:2000px;margin:auto}.page-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.page-title p{font-size:11px;color:#8993a7;margin-top:4px}.panel{background:white;border:1px solid #e9ecf4;border-radius:8px;padding:20px;margin-bottom:18px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}.section-head h2{font-size:15px}.section-head p{font-size:11px;color:#96a0b5;margin-top:3px}.actions{display:flex;gap:8px;align-items:center}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:18px}.stat{display:flex;align-items:center;gap:13px;padding:18px 20px;border:1px solid #e9ecf4;border-radius:7px;background:white}.stat-icon{width:42px;height:42px;border-radius:9px;background:#f0f0ff;color:#625aff;display:flex;justify-content:center;align-items:center}.stat-icon.tone-1{background:#edf3ff;color:#5484ed}.stat-icon.tone-2{background:#eff9f2;color:#5bac84}.stat-icon.tone-3{background:#fff7e9;color:#e4a143}.stat strong{display:block;font-size:24px;line-height:1.5;letter-spacing:-.5px;font-variant-numeric:tabular-nums}.stat .muted{font-size:11px}.stat small{display:block;color:#a2acbe;margin-top:1px;font-size:10px}.tabs{display:flex;align-items:center;gap:27px;border-bottom:1px solid #dee3ed;margin-bottom:18px;overflow:auto;white-space:nowrap}.tabs button{padding:11px 2px 12px;color:#8b95a8;position:relative;font-size:12px}.tabs button.active{color:var(--primary);font-weight:600}.tabs button.active:after{content:'';height:3px;background:var(--primary);border-radius:2px;position:absolute;bottom:-1px;left:0;right:0}.filters{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:17px}.search{display:flex;align-items:center;border:1px solid #dfe4ef;border-radius:5px;padding-left:10px;color:#a2aabe;width:255px;min-height:33px;background:white}.search .icon{width:14px;height:14px}.search input{border:0;box-shadow:none;padding:7px 9px;width:100%;font-size:12px}.segmented{display:inline-flex;border:1px solid #e6e9f2;border-radius:5px;padding:3px;margin:0 0 14px;gap:2px}.segmented button{padding:5px 12px;color:#8b96ab;border-radius:3px;font-size:11px}.segmented .active{background:var(--primary);color:white}
+.table-scroll{overflow-x:auto;scrollbar-width:thin}table{border-collapse:collapse;width:100%;font-size:12px;text-align:left}th{background:#f5f6fa;font-weight:500;color:#7a869d;white-space:nowrap;border-bottom:1px solid #e9ecf4;padding:12px 14px;font-size:11px}td{padding:15px 14px;border-bottom:1px solid #eceef5;color:#627089;line-height:1.65;max-width:380px;min-width:75px}tr:hover td{background:#fafbfe}.th-button{padding:0;display:flex;align-items:center;gap:8px;text-align:left}.sort{color:#b8c0cd;font-size:12px}.action-col{white-space:nowrap;text-align:right;min-width:120px}.action-col .text-link{margin-left:7px;padding:2px 0;font-size:11px}.name-cell{text-align:left;white-space:normal;font-weight:500;font-size:12px;padding:0}.check{width:30px;min-width:30px;padding:10px 5px 10px 10px}.check input{accent-color:var(--primary);margin:0}.table-footer{display:flex;align-items:center;justify-content:space-between;color:#9aa3b5;font-size:11px;padding:15px 0 0}.table-footer>span:last-child{display:flex;align-items:center;gap:14px}.table-footer select{height:29px;padding:4px 8px;font-size:11px}.page-num{color:var(--primary);border:1px solid #e8ebf3;border-radius:4px;padding:3px 8px;font-weight:500}.empty{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:10px;padding:50px;color:#a0abc0}.notice{display:flex;align-items:center;gap:9px;background:#f5f7fc;border:1px solid #e7ecf6;padding:10px 13px;margin-bottom:17px;border-radius:5px;font-size:11px;color:#8794aa}.callout{background:#f5f6fc;border-left:3px solid #8792d5;border-radius:4px;padding:14px 16px;color:#6e7b95;line-height:1.85;font-size:12px}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 20px}.chips>span,.chips>button{border:1px solid #dfe5f6;background:#f8faff;border-radius:4px;padding:5px 9px;color:#6579b4;font-size:11px}.chips button:hover{background:#ecefff}
+.ask-content{padding:0;background:white;min-height:calc(100vh - 143px)}.ask-page{position:relative;padding:25px 40px 20px;min-height:calc(100vh - 143px);display:flex;flex-direction:column;align-items:center;background:radial-gradient(ellipse 330px 220px at 43% 35%,#edf6ff 0%,transparent 100%),radial-gradient(ellipse 320px 240px at 65% 43%,#f5f0ff 0%,transparent 100%)}.ask-tools{align-self:flex-start;display:flex;gap:8px}.ask-tools .btn{font-size:11px;border-radius:18px;background:#ffffffbf}.ask-welcome{text-align:center;padding:28px 0 35px;width:100%;max-width:720px;margin:auto}.orb{width:50px;height:50px;margin:0 auto 14px;border:1px solid #e4e5fa;border-radius:15px;display:flex;align-items:center;justify-content:center;background:#f3f4ff;color:#626ad0;box-shadow:0 6px 24px #6372b310}.orb .icon{width:26px;height:26px}.ask-welcome h1{margin-top:8px;font-size:27px;letter-spacing:-.8px;color:#172144}.ask-welcome>p{margin:9px 0 23px;color:#a0a9bd;font-size:12px}.mode-switch{display:inline-flex;border:1px solid #e1e4f2;border-radius:25px;background:#fff;padding:4px;box-shadow:0 4px 12px #d7deef20}.mode-switch button{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:22px;font-size:12px;color:#77839a}.mode-switch .active{background:var(--primary);color:white}.mode-desc{font-size:11px;color:#949db2;margin:18px 0 26px}.prompt-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.prompt-grid button{background:#ffffffdd;border:1px solid #e2e6f2;border-radius:9px;padding:16px;display:flex;align-items:center;gap:10px;text-align:left;color:#65708a;font-size:11px;box-shadow:0 3px 12px #dadfee12}.prompt-grid button>.icon{color:#7d80c7;padding:6px;box-sizing:content-box;background:#f1f0ff;border-radius:7px;width:14px;height:14px}.prompt-grid button>span{margin-left:auto;color:#b5bdd0}.prompt-grid button:hover{border-color:#a7ade1;transform:translateY(-1px)}.composer{width:100%;max-width:800px;border:1px solid #dfe4f1;border-radius:10px;background:white;box-shadow:0 8px 28px #44588a0b;margin:12px auto 0;padding:13px 15px}.composer textarea{border:0;padding:2px 0;box-shadow:none;width:100%;height:48px;resize:none;font-size:12px}.composer-footer{display:flex;align-items:center;gap:8px}.composer-footer select{min-width:70px;border-radius:16px;font-size:10px;padding:4px 20px 4px 9px;height:26px;background:#fcfcff}.composer-project{display:flex;align-items:center;gap:6px;border:1px solid #e5e9f3;border-radius:16px;padding:4px 9px;font-size:10px;color:#8e97ad}.composer-project .icon{width:12px;height:12px}.composer-footer .btn{border-radius:7px;padding:6px 11px;min-height:30px;font-size:11px}.composer-note{width:100%;max-width:800px;color:#a5adbd;font-size:10px;margin-top:7px;display:flex;justify-content:space-between}.conversation{width:100%;max-width:850px;margin:30px auto}.question-bubble{background:#eff1fb;border-radius:10px;padding:14px 18px;margin:0 0 20px 20%;color:#46557a}.answer-title{display:flex;gap:8px;align-items:center;margin-bottom:15px;color:var(--primary)}.conversation p{font-size:12px;color:#78849b}.evidence{display:flex;gap:16px;color:#71a990;font-size:11px;margin:16px 0}.history-row{display:block;width:100%;text-align:left;border:1px solid #e4e8f1;border-radius:7px;padding:15px;margin-bottom:12px}.history-row small{display:block;color:#a0a9bb;margin-top:8px}
+.master-detail{display:grid;grid-template-columns:245px minmax(0,1fr);gap:24px}.item-list{border-right:1px solid var(--line);padding-right:18px}.item-list>button{display:block;width:100%;text-align:left;border:1px solid #e5e8f3;border-radius:7px;padding:13px;margin-bottom:10px}.item-list>button.selected{background:#f0f1ff;border-color:#d6daf7}.item-list>button>div{display:flex;gap:5px;align-items:center;justify-content:space-between}.item-list b{font-size:12px}.item-list p{font-size:11px;color:#9aa5ba;line-height:1.7;margin:8px 0}.item-list small{font-size:10px;color:#a1abc0}.detail-content{padding:0 5px;min-width:0}.detail-content h3{margin-top:24px;color:#63708b}.detail-content p{font-size:12px;color:#7b88a1}.info-grid{display:grid;grid-template-columns:1fr 1fr;padding:15px 0;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.info-grid span{display:block;color:#9ba6ba;font-size:11px;margin-bottom:7px}.info-grid b{font-size:12px;font-weight:500;color:#60708b}.steps{padding-left:23px;margin-top:15px}.steps li{padding:0 0 14px 10px;line-height:1.8;color:#7887a5;font-size:12px}.steps b{font-size:12px;color:#546684}.steps p{font-size:11px;color:#94a1b6}.pack-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:18px 0 0}.pack{padding:18px;text-align:left;border:1px solid #e3e7f1;border-radius:8px;position:relative}.pack:hover{border-color:#aeb7e2;background:#fafaff}.pack-icon{display:flex;align-items:center;justify-content:center;width:32px;height:32px;color:#7074d1;background:#f1f2ff;border-radius:8px;margin-bottom:12px}.pack h3{font-size:13px;margin-bottom:7px}.pack p{color:#98a2b6;font-size:11px;min-height:42px;margin-bottom:12px}.pack>div{display:flex;gap:5px}.pack small{display:block;color:#b0b8c8;margin-top:13px;font-size:10px}.taxonomy-layout{display:grid;grid-template-columns:155px minmax(0,1fr);gap:20px}.taxonomy{border-right:1px solid var(--line);padding-right:14px}.taxonomy h3{color:#66718b;font-size:12px}.taxonomy button{width:100%;display:flex;align-items:center;justify-content:space-between;border-radius:5px;padding:11px 8px;margin-bottom:4px;font-size:11px;color:#77849e}.taxonomy button.selected{background:#f0f1fe;color:var(--primary);font-weight:600}.taxonomy small{color:#a5aec3;font-weight:400}.taxonomy-content{min-width:0}.taxonomy-content table{min-width:660px}
+.domain-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:25px}.domain-tree{border-right:1px solid var(--line);padding-right:18px}.domain-tree .section-head{margin-bottom:12px}.domain-tree .section-head h2{font-size:13px}.domain-tree section{margin-bottom:7px;border:1px solid #e8ebf5;border-radius:6px;overflow:hidden}.domain-heading{display:flex;align-items:center;gap:7px;padding:12px;width:100%;text-align:left;background:#f6f7fb;font-size:12px}.domain-heading b{flex:1}.domain-heading small{font-size:10px;color:#7a8bb4}.domain-heading.selected{background:#ecefff;color:var(--primary)}.process{display:block;text-align:left;width:calc(100% - 16px);margin:6px 8px;padding:10px 13px;font-size:12px;color:#6b7c98;border-radius:5px}.process small{display:block;margin-top:4px;color:#a6afc1;font-size:10px}.process.selected{background:#f1f2ff;color:#5964d3}.domain-assets{min-width:0}.project-assets{border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-bottom:15px}.project-assets h3{background:#f5f6fb;padding:13px 15px;display:flex;gap:8px;align-items:center;margin:0;font-size:12px}.project-assets h3 .badge{margin-left:auto}.project-assets .table-footer{padding:12px 15px}.layer-flow{display:flex;gap:10px;align-items:center;margin:25px 0 18px}.layer-card{flex:1;border:1px solid #e4e8f3;border-radius:10px;padding:22px 16px;text-align:center;min-width:0;box-shadow:0 5px 16px #6c7eb30a}.layer-card:hover{border-color:#aab5e4;background:#fbfbff}.layer-icon{width:43px;height:43px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:#eaf0ff;color:#6485eb;margin:0 auto 11px}.layer-1 .layer-icon{background:#f0edff;color:#8b6cde}.layer-2 .layer-icon{background:#eceaff;color:#7c63ed}.layer-3 .layer-icon{background:#edf9f3;color:#55ad82}.layer-card>small{color:#a5aec1}.layer-card>p{font-size:11px;color:#7e8ca4;text-align:left;min-height:59px;margin:17px 0 14px}.layer-link{display:block;color:#929dd1;font-size:10px;margin-top:14px}.flow-arrow{color:#7b82c7;font-size:22px}.dim-card{width:100%;border:1px dashed #dbe1ef;display:flex;align-items:center;gap:15px;text-align:left;padding:20px;border-radius:9px;background:#fcfdff}.dim-card .layer-icon{margin:0;background:#fff2df;color:#d5a34e}.dim-card h2 small{font-size:12px;color:#a1abc0;font-weight:400}.dim-card p{font-size:11px;color:#8b97ad;margin-top:5px}
+.route-selects{display:flex;gap:25px;flex-wrap:wrap;margin-bottom:25px}.route-selects .select-label{display:grid;gap:8px}.route-selects select{width:210px}.block-title{margin:24px 0 14px;color:#6f7d97;font-size:12px}.framework-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.framework{border:1px solid #e5e8f1;border-radius:7px;padding:16px}.framework-title{display:flex;gap:8px;align-items:center;margin-bottom:20px;color:#657192}.framework-title h3{margin:0;font-size:12px;flex:1}.framework .select-label{display:flex;margin-bottom:13px}.framework .select-label>span{font-size:11px;white-space:nowrap;color:#8b98af}.framework select{flex:1;width:50px;min-width:0;font-size:11px}.result-models{display:grid;grid-template-columns:1fr 1fr;gap:25px}.result-models .select-label{display:grid;gap:8px}.result-models select{width:100%}.save-row{display:flex;align-items:center;gap:14px;margin-top:25px}.save-row .muted{font-size:11px}.mcp-layout{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:18px}.mcp-service{display:flex;align-items:center;gap:15px;margin:20px 0 28px}.mcp-service>div{flex:1}.mcp-service h2{font-size:16px}.mcp-service p{color:#9aa5ba;font-size:11px;margin-top:5px}.service-icon{background:#eff1ff;border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;color:#818cde}.service-bottom{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:24px}.service-bottom .muted{font-size:11px}.code{background:#f5f7fb;color:#64738e;border:1px solid #e6ebf4;padding:18px;border-radius:6px;line-height:1.9;font-family:Consolas,monospace;font-size:11px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}.code-label{display:flex;justify-content:space-between;align-items:center;color:#929eb5;font-size:11px}.mcp-help .eyebrow{display:block;margin-bottom:10px}.mcp-help h2{margin-bottom:25px}.mcp-help .callout{font-size:11px}.role-list{border-right:1px solid var(--line);padding-right:18px}.role-list>.btn{width:100%;margin-bottom:18px}.role-list>button:not(.btn){display:flex;width:100%;align-items:center;gap:10px;text-align:left;padding:13px 9px;border-radius:6px;margin-bottom:7px}.role-list>button.selected{background:#eff1ff}.role-list b{display:block;font-size:12px}.role-list small{display:block;color:#9fabc0;margin-top:4px;font-size:10px}.avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#7798e8;color:white}.avatar-1{background:#6dc09e}.avatar-2{background:#c198db}.avatar-3{background:#e3ba7d}.permission-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.permission-grid>div{background:#f7f9fc;border-radius:5px;padding:13px;color:#8190a8;font-size:11px}.ok{color:#6cad92;margin-right:10px}.classification-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}.classification{border:1px solid #e7eaf4;border-radius:7px;padding:16px;text-align:left;background:white}.classification h3{font-size:13px;display:inline;margin-left:9px}.classification p{color:#9ba4b6;font-size:10px;margin-top:10px}.classification.P0{border-top:3px solid #dfa1a4}.classification.P1{border-top:3px solid #e5be86}.classification.P2{border-top:3px solid #95b1dd}.classification.P3{border-top:3px solid #9acaa9}.chart-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:12px}.chart-title span{color:#939eb3;font-size:10px}.chart svg{width:100%;max-height:225px;display:block}.chart.small svg{max-height:190px}.dot{width:6px;height:6px;border-radius:50%;display:inline-block;background:#5765df;vertical-align:middle;margin-right:4px}.dot.teal{background:#40a99a}
+.overlay{position:fixed;inset:0;background:#1923443b;z-index:80;display:flex;justify-content:flex-end;backdrop-filter:blur(2px)}.sheet{background:white;width:min(590px,90vw);height:100%;display:flex;flex-direction:column;box-shadow:-10px 0 60px #202b5420;animation:slide .2s ease-out}.sheet.wide{width:min(1000px,92vw)}.sheet>header{padding:26px 28px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.sheet>header h2{margin-top:5px;font-size:18px}.close{font-size:25px;color:#8d97ae;padding:3px 9px}.sheet-body{padding:24px 28px;overflow:auto}.sheet-body h3{margin-top:25px}.sheet-body .tabs{gap:20px}.detail-summary{padding:10px 0 20px;color:#8795ac;font-size:12px}.detail-summary p{margin-top:9px}.detail-fields{display:grid;grid-template-columns:120px 1fr;margin:0;font-size:12px;gap:0}.detail-fields dt,.detail-fields dd{padding:12px 0;border-bottom:1px solid #edf0f6;margin:0;overflow-wrap:anywhere}.detail-fields dt{color:#9ca8bd}.detail-fields dd{color:#5d6e8b}.form{display:grid;gap:20px}.form>label{display:grid;gap:8px;color:#73839e;font-size:12px}.form input,.form select{height:38px}.form-actions{display:flex;justify-content:flex-end;gap:10px;border-top:1px solid var(--line);padding-top:20px}.form>.muted{font-size:11px}.error{color:#c46a6a;font-size:12px}.design-intro{padding:4px 0 20px}.design-intro p{color:#8b98af;font-size:12px;margin:10px 0}.sheet.wide .table-scroll{margin-bottom:24px}.sheet.wide td{font-size:11px}.toast{position:fixed;left:50%;top:75px;transform:translateX(-50%);z-index:110;display:flex;align-items:center;gap:9px;background:white;border:1px solid #e3e8f1;border-radius:7px;padding:13px 22px;box-shadow:0 8px 30px #293b5b25;font-size:12px;color:#6c7b93}.toast>span{color:#5aaa88}.compact .nav-items a{min-height:31px;padding-top:7px;padding-bottom:7px}.compact .group-label{padding-top:8px;padding-bottom:8px}.compact .side-nav section{margin-bottom:4px}.compact td{padding-top:10px;padding-bottom:10px}.compact .panel{padding:16px}.compact .stat{padding:14px 17px}.compact .page-content{padding:18px 22px}.compact .ask-content{padding:0}@keyframes slide{from{transform:translateX(35px);opacity:.7}to{transform:translateX(0);opacity:1}}
+@media(min-width:1600px){.ask-welcome{padding-top:60px;padding-bottom:80px;max-width:760px}.ask-welcome h1{font-size:31px}.ask-page{padding-top:25px;padding-bottom:25px}.page-content{padding:25px 28px}.pack-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.stat{padding:20px 24px}.layer-card{padding:28px 24px}.composer textarea{height:55px}}
+@media(max-width:1150px){.global-header nav{gap:22px}.global-header nav>span{display:none}.page-content{padding:18px}.mcp-layout{grid-template-columns:1fr}.mcp-help{display:none}.master-detail{grid-template-columns:200px minmax(0,1fr);gap:18px}.domain-layout{grid-template-columns:210px minmax(0,1fr);gap:18px}.pack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.framework-grid{grid-template-columns:1fr}.framework .select-label select{width:100%}.layer-flow{gap:6px}.layer-card{padding:17px 12px}.layer-card p{min-height:88px}.classification-grid{grid-template-columns:1fr 1fr}.filters .select-label select{min-width:115px}.context-bar{padding:12px 18px}.prompt-grid button{padding:13px;font-size:10px}}
+@media(max-width:760px){.sidebar{width:64px}.sidebar-title{padding:20px 22px}.sidebar-title strong,.role-selector,.nav-items,.group-label>span,.sidebar-bottom>span{display:none}.group-label{justify-content:center}.main{margin-left:64px}.global-header{padding:0 14px}.logo{width:auto}.logo b{font-size:17px}.global-header nav{display:none}.global-header>span:last-child{display:none}.opened-tabs{padding:0 4px}.context-bar{padding:10px 12px}.context-bar .select-label>span{display:none}.context-bar select{width:125px;min-width:125px}.page-content{padding:15px 12px}.page-title p{max-width:260px}.stats{grid-template-columns:1fr 1fr;gap:8px}.stat{padding:13px}.stat-icon{display:none}.stat strong{font-size:21px}.panel{padding:14px}.section-head{align-items:flex-start;flex-wrap:wrap;gap:12px}.actions{flex-wrap:wrap}.taxonomy-layout,.master-detail,.domain-layout{grid-template-columns:1fr}.item-list,.role-list,.domain-tree,.taxonomy{border-right:0;border-bottom:1px solid var(--line);padding:0 0 14px}.taxonomy{display:flex;flex-wrap:wrap;gap:4px}.taxonomy h3{width:100%}.taxonomy button{width:auto}.item-list{display:flex;overflow:auto;gap:8px}.item-list>button{min-width:180px}.layer-flow{display:grid;grid-template-columns:1fr 1fr}.flow-arrow{display:none}.layer-card p{min-height:55px}.dim-card{padding:14px}.framework-grid,.result-models{grid-template-columns:1fr}.ask-page{padding:20px 15px}.ask-welcome{padding-top:35px}.ask-welcome h1{font-size:21px}.prompt-grid{grid-template-columns:1fr}.prompt-grid button:nth-child(n+3){display:none}.mode-desc{line-height:1.7}.composer-footer{gap:5px;flex-wrap:wrap}.composer-project{display:none}.composer-note{font-size:9px}.chart-title{align-items:flex-start;gap:9px;flex-direction:column}.mcp-service{align-items:flex-start}.route-selects{gap:15px}.pack-grid{grid-template-columns:1fr}.classification-grid{gap:8px}.classification{padding:12px}.classification h3{font-size:12px}.design-intro h2{font-size:16px}.sheet-body{padding:20px}.sheet>header{padding:20px}.detail-fields{grid-template-columns:100px 1fr}.ask-content{padding:0}}
+@media(max-height:800px) and (min-width:761px){.ask-page{padding-top:18px;padding-bottom:14px}.ask-welcome{padding:16px 0 20px}.ask-welcome .orb{display:none}.ask-welcome h1{font-size:24px}.ask-welcome>p{margin:6px 0 18px}.mode-desc{margin:12px 0 19px}.prompt-grid{gap:9px}.prompt-grid button{padding:11px 13px}.composer{margin-top:8px}.composer textarea{height:38px}}
+.tabs{overflow-x:auto;overflow-y:hidden}.page-title p,.section-head p{font-size:12px;color:#8793aa}.layer-card p{color:#71819c}.mode-desc{color:#8996ad}.taxonomy button,.nav-items a{font-size:12px}
+</style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "primaryColor": "#151C65",
+      "density": "舒适",
+      "showCounts": true
+    }/*EDITMODE-END*/;
+  </script>
+  <script type="text/babel">/* BEGIN USAGE */
+// tweaks-panel.jsx
+// Reusable Tweaks shell + form-control helpers.
+// Exports (to window): useTweaks, TweaksPanel, TweakSection, TweakRow, TweakSlider,
+//   TweakToggle, TweakRadio, TweakSelect, TweakText, TweakNumber, TweakColor, TweakButton.
+//
+// Owns the host protocol (listens for miaoda:tweaks:activate / miaoda:tweaks:deactivate,
+// posts miaoda:tweaks:available / miaoda:tweaks:set-keys / miaoda:tweaks:dismissed) so
+// individual prototypes don't re-roll it. Ships a consistent set of controls so you
+// don't hand-draw <input type="range">, segmented radios, steppers, etc.
+//
+// Usage (in an HTML file that loads React + Babel):
+//
+//   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+//     "primaryColor": "#D97757",
+//     "palette": ["#D97757", "#29261b", "#f6f4ef"],
+//     "fontSize": 16,
+//     "density": "regular",
+//     "dark": false
+//   }/*EDITMODE-END*/;
+//
+//   TWEAK_DEFAULTS must live inline in the HTML file — in a <script type="text/babel"> block,
+//   not in a separate .jsx/.js loaded via <script src>. That in-HTML block is the region the
+//   host rewrites when the user adjusts a tweak, so keep it wrapped in the /*EDITMODE-BEGIN*/ …
+//   /*EDITMODE-END*/ markers and the object between them valid JSON — double-quoted keys, no
+//   trailing commas, no comments or expressions — even after you rename the keys. Move it out
+//   of the HTML, strip the markers, or use a non-JSON body and tweak edits silently stop persisting.
+//
+//   function App() {
+//     const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+//     return (
+//       <div style={{ fontSize: t.fontSize, color: t.primaryColor }}>
+//         Hello
+//         <TweaksPanel>
+//           <TweakSection label="Typography" />
+//           <TweakSlider label="Font size" value={t.fontSize} min={10} max={32} unit="px"
+//                        onChange={(v) => setTweak('fontSize', v)} />
+//           <TweakRadio  label="Density" value={t.density}
+//                        options={['compact', 'regular', 'comfy']}
+//                        onChange={(v) => setTweak('density', v)} />
+//           <TweakSection label="Theme" />
+//           <TweakColor  label="Primary" value={t.primaryColor}
+//                        options={['#D97757', '#2A6FDB', '#1F8A5B', '#7A5AE0']}
+//                        onChange={(v) => setTweak('primaryColor', v)} />
+//           <TweakColor  label="Palette" value={t.palette}
+//                        options={[['#D97757', '#29261b', '#f6f4ef'],
+//                                  ['#475569', '#0f172a', '#f1f5f9']]}
+//                        onChange={(v) => setTweak('palette', v)} />
+//           <TweakToggle label="Dark mode" value={t.dark}
+//                        onChange={(v) => setTweak('dark', v)} />
+//         </TweaksPanel>
+//       </div>
+//     );
+//   }
+//
+// TweakRadio is the segmented control for 2–3 short options (auto-falls-back to
+// TweakSelect past ~16/~10 chars per label); reach for TweakSelect directly when
+// options are many or long. For color tweaks always curate 3-4 options rather than
+// a free picker; an option can also be a whole 2–5 color palette (the stored value
+// is the array). The Tweak* controls are a floor, not a ceiling — build custom
+// controls inside the panel if a tweak calls for UI they don't cover.
+/* END USAGE */
+// ─────────────────────────────────────────────────────────────────────────────
+
+const __TWEAKS_STYLE = `
+  .twk-panel{position:fixed;right:16px;bottom:16px;z-index:2147483646;width:280px;
+    max-height:calc(100vh - 32px);display:flex;flex-direction:column;
+    transform:scale(var(--dc-inv-zoom,1));transform-origin:bottom right;
+    background:rgba(250,249,247,.78);color:#29261b;
+    -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+    border:.5px solid rgba(255,255,255,.6);border-radius:14px;
+    box-shadow:0 1px 0 rgba(255,255,255,.5) inset,0 12px 40px rgba(0,0,0,.18);
+    font:11.5px/1.4 ui-sans-serif,system-ui,-apple-system,sans-serif;overflow:hidden}
+  .twk-hd{display:flex;align-items:center;justify-content:space-between;
+    padding:10px 8px 10px 14px;cursor:move;user-select:none}
+  .twk-hd b{font-size:12px;font-weight:600;letter-spacing:.01em}
+  .twk-x{appearance:none;border:0;background:transparent;color:rgba(41,38,27,.55);
+    width:22px;height:22px;border-radius:6px;cursor:default;font-size:13px;line-height:1}
+  .twk-x:hover{background:rgba(0,0,0,.06);color:#29261b}
+  .twk-body{padding:2px 14px 14px;display:flex;flex-direction:column;gap:10px;
+    overflow-y:auto;overflow-x:hidden;min-height:0;
+    scrollbar-width:thin;scrollbar-color:rgba(0,0,0,.15) transparent}
+  .twk-body::-webkit-scrollbar{width:8px}
+  .twk-body::-webkit-scrollbar-track{background:transparent;margin:2px}
+  .twk-body::-webkit-scrollbar-thumb{background:rgba(0,0,0,.15);border-radius:4px;
+    border:2px solid transparent;background-clip:content-box}
+  .twk-body::-webkit-scrollbar-thumb:hover{background:rgba(0,0,0,.25);
+    border:2px solid transparent;background-clip:content-box}
+  .twk-row{display:flex;flex-direction:column;gap:5px}
+  .twk-row-h{flex-direction:row;align-items:center;justify-content:space-between;gap:10px}
+  .twk-lbl{display:flex;justify-content:space-between;align-items:baseline;
+    color:rgba(41,38,27,.72)}
+  .twk-lbl>span:first-child{font-weight:500}
+  .twk-val{color:rgba(41,38,27,.5);font-variant-numeric:tabular-nums}
+
+  .twk-sect{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+    color:rgba(41,38,27,.45);padding:10px 0 0}
+  .twk-sect:first-child{padding-top:0}
+
+  .twk-field{appearance:none;box-sizing:border-box;width:100%;min-width:0;height:26px;padding:0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;
+    background:rgba(255,255,255,.6);color:inherit;font:inherit;outline:none}
+  .twk-field:focus{border-color:rgba(0,0,0,.25);background:rgba(255,255,255,.85)}
+  select.twk-field{padding-right:22px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'><path fill='rgba(0,0,0,.5)' d='M0 0h10L5 6z'/></svg>");
+    background-repeat:no-repeat;background-position:right 8px center}
+
+  .twk-slider{appearance:none;-webkit-appearance:none;width:100%;height:4px;margin:6px 0;
+    border-radius:999px;background:rgba(0,0,0,.12);outline:none}
+  .twk-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;
+    width:14px;height:14px;border-radius:50%;background:#fff;
+    border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+  .twk-slider::-moz-range-thumb{width:14px;height:14px;border-radius:50%;
+    background:#fff;border:.5px solid rgba(0,0,0,.12);box-shadow:0 1px 3px rgba(0,0,0,.2);cursor:default}
+
+  .twk-seg{position:relative;display:flex;padding:2px;border-radius:8px;
+    background:rgba(0,0,0,.06);user-select:none}
+  .twk-seg-thumb{position:absolute;top:2px;bottom:2px;border-radius:6px;
+    background:rgba(255,255,255,.9);box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:left .15s cubic-bezier(.3,.7,.4,1),width .15s}
+  .twk-seg.dragging .twk-seg-thumb{transition:none}
+  .twk-seg button{appearance:none;position:relative;z-index:1;flex:1;border:0;
+    background:transparent;color:inherit;font:inherit;font-weight:500;min-height:22px;
+    border-radius:6px;cursor:default;padding:4px 6px;line-height:1.2;
+    overflow-wrap:anywhere}
+
+  .twk-toggle{position:relative;width:32px;height:18px;border:0;border-radius:999px;
+    background:rgba(0,0,0,.15);transition:background .15s;cursor:default;padding:0}
+  .twk-toggle[data-on="1"]{background:#34c759}
+  .twk-toggle i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .15s}
+  .twk-toggle[data-on="1"] i{transform:translateX(14px)}
+
+  .twk-num{display:flex;align-items:center;box-sizing:border-box;min-width:0;height:26px;padding:0 0 0 8px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:7px;background:rgba(255,255,255,.6)}
+  .twk-num-lbl{font-weight:500;color:rgba(41,38,27,.6);cursor:ew-resize;
+    user-select:none;padding-right:8px}
+  .twk-num input{flex:1;min-width:0;height:100%;border:0;background:transparent;
+    font:inherit;font-variant-numeric:tabular-nums;text-align:right;padding:0 8px 0 0;
+    outline:none;color:inherit;-moz-appearance:textfield}
+  .twk-num input::-webkit-inner-spin-button,.twk-num input::-webkit-outer-spin-button{
+    -webkit-appearance:none;margin:0}
+  .twk-num-unit{padding-right:8px;color:rgba(41,38,27,.45)}
+
+  .twk-btn{appearance:none;height:26px;padding:0 12px;border:0;border-radius:7px;
+    background:rgba(0,0,0,.78);color:#fff;font:inherit;font-weight:500;cursor:default}
+  .twk-btn:hover{background:rgba(0,0,0,.88)}
+  .twk-btn.secondary{background:rgba(0,0,0,.06);color:inherit}
+  .twk-btn.secondary:hover{background:rgba(0,0,0,.1)}
+
+  .twk-swatch{appearance:none;-webkit-appearance:none;width:56px;height:22px;
+    border:.5px solid rgba(0,0,0,.1);border-radius:6px;padding:0;cursor:default;
+    background:transparent;flex-shrink:0}
+  .twk-swatch::-webkit-color-swatch-wrapper{padding:0}
+  .twk-swatch::-webkit-color-swatch{border:0;border-radius:5.5px}
+  .twk-swatch::-moz-color-swatch{border:0;border-radius:5.5px}
+
+  .twk-chips{display:flex;gap:6px}
+  .twk-chip{position:relative;appearance:none;flex:1;min-width:0;height:46px;
+    padding:0;border:0;border-radius:6px;overflow:hidden;cursor:default;
+    box-shadow:0 0 0 .5px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.06);
+    transition:transform .12s cubic-bezier(.3,.7,.4,1),box-shadow .12s}
+  .twk-chip:hover{transform:translateY(-1px);
+    box-shadow:0 0 0 .5px rgba(0,0,0,.18),0 4px 10px rgba(0,0,0,.12)}
+  .twk-chip[data-on="1"]{box-shadow:0 0 0 1.5px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.15)}
+  .twk-chip>span{position:absolute;top:0;bottom:0;right:0;width:34%;
+    display:flex;flex-direction:column;box-shadow:-1px 0 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i{flex:1;box-shadow:0 -1px 0 rgba(0,0,0,.1)}
+  .twk-chip>span>i:first-child{box-shadow:none}
+  .twk-chip svg{position:absolute;top:6px;left:6px;width:13px;height:13px;
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+`;
+
+// ── useTweaks ───────────────────────────────────────────────────────────────
+// Single source of truth for tweak values. setTweak persists via the host
+// (miaoda:tweaks:set-keys → host rewrites the EDITMODE block on disk).
+function useTweaks(defaults) {
+  const [values, setValues] = React.useState(defaults);
+  // Accepts either setTweak('key', value) or setTweak({ key: value, ... }) so a
+  // useState-style call doesn't write a "[object Object]" key into the persisted
+  // JSON block.
+  const setTweak = React.useCallback((keyOrEdits, val) => {
+    const edits = typeof keyOrEdits === 'object' && keyOrEdits !== null
+      ? keyOrEdits : { [keyOrEdits]: val };
+    setValues((prev) => ({ ...prev, ...edits }));
+    window.parent.postMessage({ type: 'miaoda:tweaks:set-keys', edits }, '*');
+    // Same-window signal so in-page listeners (deck-stage rail thumbnails)
+    // can react — the parent message only reaches the host, not peers.
+    window.dispatchEvent(new CustomEvent('tweakchange', { detail: edits }));
+  }, []);
+  return [values, setTweak];
+}
+
+// ── TweaksPanel ─────────────────────────────────────────────────────────────
+// Floating shell. Registers the protocol listener BEFORE announcing
+// availability — if the announce ran first, the host's activate could land
+// before our handler exists and the toolbar toggle would silently no-op.
+// The close button posts miaoda:tweaks:dismissed so the host's toolbar toggle
+// flips off in lockstep; the host echoes miaoda:tweaks:deactivate back which
+// is what actually hides the panel.
+function TweaksPanel({ title = 'Tweaks', children }) {
+  const [open, setOpen] = React.useState(false);
+  const dragRef = React.useRef(null);
+  const offsetRef = React.useRef({ x: 16, y: 16 });
+  const PAD = 16;
+
+  const clampToViewport = React.useCallback(() => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const w = panel.offsetWidth, h = panel.offsetHeight;
+    const maxRight = Math.max(PAD, window.innerWidth - w - PAD);
+    const maxBottom = Math.max(PAD, window.innerHeight - h - PAD);
+    offsetRef.current = {
+      x: Math.min(maxRight, Math.max(PAD, offsetRef.current.x)),
+      y: Math.min(maxBottom, Math.max(PAD, offsetRef.current.y)),
+    };
+    panel.style.right = offsetRef.current.x + 'px';
+    panel.style.bottom = offsetRef.current.y + 'px';
+  }, []);
+
+  React.useEffect(() => {
+    if (!open) return;
+    clampToViewport();
+    if (typeof ResizeObserver === 'undefined') {
+      window.addEventListener('resize', clampToViewport);
+      return () => window.removeEventListener('resize', clampToViewport);
+    }
+    const ro = new ResizeObserver(clampToViewport);
+    ro.observe(document.documentElement);
+    return () => ro.disconnect();
+  }, [open, clampToViewport]);
+
+  React.useEffect(() => {
+    const onMsg = (e) => {
+      const t = e?.data?.type;
+      if (t === 'miaoda:tweaks:activate') setOpen(true);
+      else if (t === 'miaoda:tweaks:deactivate') setOpen(false);
+    };
+    window.addEventListener('message', onMsg);
+    window.parent.postMessage({ type: 'miaoda:tweaks:available' }, '*');
+    return () => window.removeEventListener('message', onMsg);
+  }, []);
+
+  const dismiss = () => {
+    setOpen(false);
+    window.parent.postMessage({ type: 'miaoda:tweaks:dismissed' }, '*');
+  };
+
+  const onDragStart = (e) => {
+    const panel = dragRef.current;
+    if (!panel) return;
+    const r = panel.getBoundingClientRect();
+    const sx = e.clientX, sy = e.clientY;
+    const startRight = window.innerWidth - r.right;
+    const startBottom = window.innerHeight - r.bottom;
+    const move = (ev) => {
+      offsetRef.current = {
+        x: startRight - (ev.clientX - sx),
+        y: startBottom - (ev.clientY - sy),
+      };
+      clampToViewport();
+    };
+    const up = () => {
+      window.removeEventListener('mousemove', move);
+      window.removeEventListener('mouseup', up);
+    };
+    window.addEventListener('mousemove', move);
+    window.addEventListener('mouseup', up);
+  };
+
+  if (!open) return null;
+  return (
+    <>
+      <style>{__TWEAKS_STYLE}</style>
+      <div ref={dragRef} className="twk-panel" data-miaoda-chrome=""
+           style={{ right: offsetRef.current.x, bottom: offsetRef.current.y }}>
+        <div className="twk-hd" onMouseDown={onDragStart}>
+          <b>{title}</b>
+          <button className="twk-x" aria-label="Close tweaks"
+                  onMouseDown={(e) => e.stopPropagation()}
+                  onClick={dismiss}>✕</button>
+        </div>
+        <div className="twk-body">
+          {children}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// ── Layout helpers ──────────────────────────────────────────────────────────
+
+function TweakSection({ label, children }) {
+  return (
+    <>
+      <div className="twk-sect">{label}</div>
+      {children}
+    </>
+  );
+}
+
+function TweakRow({ label, value, children, inline = false }) {
+  return (
+    <div className={inline ? 'twk-row twk-row-h' : 'twk-row'}>
+      <div className="twk-lbl">
+        <span>{label}</span>
+        {value != null && <span className="twk-val">{value}</span>}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+// ── Controls ────────────────────────────────────────────────────────────────
+
+function TweakSlider({ label, value, min = 0, max = 100, step = 1, unit = '', onChange }) {
+  return (
+    <TweakRow label={label} value={`${value}${unit}`}>
+      <input type="range" className="twk-slider" min={min} max={max} step={step}
+             value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </TweakRow>
+  );
+}
+
+function TweakToggle({ label, value, onChange }) {
+  return (
+    <div className="twk-row twk-row-h">
+      <div className="twk-lbl"><span>{label}</span></div>
+      <button type="button" className="twk-toggle" data-on={value ? '1' : '0'}
+              role="switch" aria-checked={!!value}
+              onClick={() => onChange(!value)}><i /></button>
+    </div>
+  );
+}
+
+function TweakRadio({ label, value, options, onChange }) {
+  const trackRef = React.useRef(null);
+  const [dragging, setDragging] = React.useState(false);
+  // The active value is read by pointer-move handlers attached for the lifetime
+  // of a drag — ref it so a stale closure doesn't fire onChange for every move.
+  const valueRef = React.useRef(value);
+  valueRef.current = value;
+
+  // Segments wrap mid-word once per-segment width runs out. The track is
+  // ~248px (280 panel − 28 body pad − 4 seg pad), each button loses 12px
+  // to its own padding, and 11.5px system-ui averages ~6.3px/char — so 2
+  // options fit ~16 chars each, 3 fit ~10. Past that (or >3 options), fall
+  // back to a dropdown rather than wrap.
+  const labelLen = (o) => String(typeof o === 'object' ? o.label : o).length;
+  const maxLen = options.reduce((m, o) => Math.max(m, labelLen(o)), 0);
+  const fitsAsSegments = maxLen <= ({ 2: 16, 3: 10 }[options.length] ?? 0);
+  if (!fitsAsSegments) {
+    // <select> emits strings — map back to the original option value so the
+    // fallback stays type-preserving (numbers, booleans) like the segment path.
+    const resolve = (s) => {
+      const m = options.find((o) => String(typeof o === 'object' ? o.value : o) === s);
+      return m === undefined ? s : typeof m === 'object' ? m.value : m;
+    };
+    return <TweakSelect label={label} value={value} options={options}
+                        onChange={(s) => onChange(resolve(s))} />;
+  }
+  const opts = options.map((o) => (typeof o === 'object' ? o : { value: o, label: o }));
+  const idx = Math.max(0, opts.findIndex((o) => o.value === value));
+  const n = opts.length;
+
+  const segAt = (clientX) => {
+    const r = trackRef.current.getBoundingClientRect();
+    const inner = r.width - 4;
+    const i = Math.floor(((clientX - r.left - 2) / inner) * n);
+    return opts[Math.max(0, Math.min(n - 1, i))].value;
+  };
+
+  const onPointerDown = (e) => {
+    setDragging(true);
+    const v0 = segAt(e.clientX);
+    if (v0 !== valueRef.current) onChange(v0);
+    const move = (ev) => {
+      if (!trackRef.current) return;
+      const v = segAt(ev.clientX);
+      if (v !== valueRef.current) onChange(v);
+    };
+    const up = () => {
+      setDragging(false);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+
+  return (
+    <TweakRow label={label}>
+      <div ref={trackRef} role="radiogroup" onPointerDown={onPointerDown}
+           className={dragging ? 'twk-seg dragging' : 'twk-seg'}>
+        <div className="twk-seg-thumb"
+             style={{ left: `calc(2px + ${idx} * (100% - 4px) / ${n})`,
+                      width: `calc((100% - 4px) / ${n})` }} />
+        {opts.map((o) => (
+          <button key={o.value} type="button" role="radio" aria-checked={o.value === value}>
+            {o.label}
+          </button>
+        ))}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakSelect({ label, value, options, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <select className="twk-field" value={value} onChange={(e) => onChange(e.target.value)}>
+        {options.map((o) => {
+          const v = typeof o === 'object' ? o.value : o;
+          const l = typeof o === 'object' ? o.label : o;
+          return <option key={v} value={v}>{l}</option>;
+        })}
+      </select>
+    </TweakRow>
+  );
+}
+
+function TweakText({ label, value, placeholder, onChange }) {
+  return (
+    <TweakRow label={label}>
+      <input className="twk-field" type="text" value={value} placeholder={placeholder}
+             onChange={(e) => onChange(e.target.value)} />
+    </TweakRow>
+  );
+}
+
+function TweakNumber({ label, value, min, max, step = 1, unit = '', onChange }) {
+  const clamp = (n) => {
+    if (min != null && n < min) return min;
+    if (max != null && n > max) return max;
+    return n;
+  };
+  const startRef = React.useRef({ x: 0, val: 0 });
+  const onScrubStart = (e) => {
+    e.preventDefault();
+    startRef.current = { x: e.clientX, val: value };
+    const decimals = (String(step).split('.')[1] || '').length;
+    const move = (ev) => {
+      const dx = ev.clientX - startRef.current.x;
+      const raw = startRef.current.val + dx * step;
+      const snapped = Math.round(raw / step) * step;
+      onChange(clamp(Number(snapped.toFixed(decimals))));
+    };
+    const up = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  };
+  return (
+    <div className="twk-num">
+      <span className="twk-num-lbl" onPointerDown={onScrubStart}>{label}</span>
+      <input type="number" value={value} min={min} max={max} step={step}
+             onChange={(e) => onChange(clamp(Number(e.target.value)))} />
+      {unit && <span className="twk-num-unit">{unit}</span>}
+    </div>
+  );
+}
+
+// Relative-luminance contrast pick — checkmarks drawn over a swatch need to
+// read on both #111 and #fafafa without per-option configuration. Hex input
+// only (#rgb / #rrggbb); named or rgb()/hsl() colors fall through to "light".
+function __twkIsLight(hex) {
+  const h = String(hex).replace('#', '');
+  const x = h.length === 3 ? h.replace(/./g, (c) => c + c) : h.padEnd(6, '0');
+  const n = parseInt(x.slice(0, 6), 16);
+  if (Number.isNaN(n)) return true;
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return r * 299 + g * 587 + b * 114 > 148000;
+}
+
+const __TwkCheck = ({ light }) => (
+  <svg viewBox="0 0 14 14" aria-hidden="true">
+    <path d="M3 7.2 5.8 10 11 4.2" fill="none" strokeWidth="2.2"
+          strokeLinecap="round" strokeLinejoin="round"
+          stroke={light ? 'rgba(0,0,0,.78)' : '#fff'} />
+  </svg>
+);
+
+// TweakColor — curated color/palette picker. Each option is either a single
+// hex string or an array of 1-5 hex strings; the card adapts — a lone color
+// renders solid, a palette renders colors[0] as the hero (left ~2/3) with the
+// rest stacked in a sharp column on the right. onChange emits the
+// option in the shape it was passed (string stays string, array stays array).
+// Without options it falls back to the native color input for back-compat.
+function TweakColor({ label, value, options, onChange }) {
+  if (!options || !options.length) {
+    return (
+      <div className="twk-row twk-row-h">
+        <div className="twk-lbl"><span>{label}</span></div>
+        <input type="color" className="twk-swatch" value={value}
+               onChange={(e) => onChange(e.target.value)} />
+      </div>
+    );
+  }
+  // Native <input type=color> emits lowercase hex per the HTML spec, so
+  // compare case-insensitively. String() guards JSON.stringify(undefined),
+  // which returns the primitive undefined (no .toLowerCase).
+  const key = (o) => String(JSON.stringify(o)).toLowerCase();
+  const cur = key(value);
+  return (
+    <TweakRow label={label}>
+      <div className="twk-chips" role="radiogroup">
+        {options.map((o, i) => {
+          const colors = Array.isArray(o) ? o : [o];
+          const [hero, ...rest] = colors;
+          const sup = rest.slice(0, 4);
+          const on = key(o) === cur;
+          return (
+            <button key={i} type="button" className="twk-chip" role="radio"
+                    aria-checked={on} data-on={on ? '1' : '0'}
+                    aria-label={colors.join(', ')} title={colors.join(' · ')}
+                    style={{ background: hero }}
+                    onClick={() => onChange(o)}>
+              {sup.length > 0 && (
+                <span>
+                  {sup.map((c, j) => <i key={j} style={{ background: c }} />)}
+                </span>
+              )}
+              {on && <__TwkCheck light={__twkIsLight(hero)} />}
+            </button>
+          );
+        })}
+      </div>
+    </TweakRow>
+  );
+}
+
+function TweakButton({ label, onClick, secondary = false }) {
+  return (
+    <button type="button" className={secondary ? 'twk-btn secondary' : 'twk-btn'}
+            onClick={onClick}>{label}</button>
+  );
+}
+
+// Opt out of DCViewport's transform so position:fixed works against the viewport.
+TweaksPanel.dcOverlay = true;
+
+Object.assign(window, {
+  useTweaks, TweaksPanel, TweakSection, TweakRow,
+  TweakSlider, TweakToggle, TweakRadio, TweakSelect,
+  TweakText, TweakNumber, TweakColor, TweakButton,
+});
+
+// ── TweakSuggestionBar (flag-gated addon) ───────────────────────────────────
+(function () {
+  const s = document.createElement('style');
+  s.textContent = `
+    @keyframes twk-blink{50%{opacity:0}}
+    @keyframes twk-fadein{from{opacity:0;transform:translateX(4px)}to{opacity:1;transform:none}}
+    .twk-sugg{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:8px;
+      background:rgba(0,0,0,.04);border:.5px solid rgba(0,0,0,.06);transition:all .15s}
+    .twk-sugg:focus-within{background:rgba(0,0,0,.06);border-color:rgba(0,0,0,.12)}
+    .twk-sugg-field{position:relative;flex:1;min-width:0}
+    .twk-sugg-field input{width:100%;height:20px;border:0;background:transparent;
+      font:inherit;outline:none;color:inherit}
+    .twk-sugg-ghost{position:absolute;inset:0;display:flex;align-items:center;
+      color:rgba(41,38,27,.42);pointer-events:none;white-space:nowrap;overflow:hidden}
+    .twk-sugg-ghost.hint{color:rgba(41,38,27,.28)}
+    .twk-sugg-caret{display:inline-block;width:1px;height:13px;margin-left:1px;
+      border-right:1.5px solid currentColor;opacity:.5;animation:twk-blink 1s step-end infinite}
+    .twk-sugg-ideas{appearance:none;border:0;background:transparent;font:inherit;
+      font-size:10.5px;font-weight:600;color:rgba(41,38,27,.6);cursor:default;padding:0 2px;
+      white-space:nowrap;animation:twk-fadein .25s ease}
+    .twk-sugg-ideas:hover{color:rgba(41,38,27,.85)}
+    .twk-sugg-ideas svg{color:#D97757}
+    .twk-sugg-send{appearance:none;border:0;height:20px;padding:0 8px;border-radius:5px;
+      background:#29261b;color:#fff;font:inherit;font-size:10px;font-weight:600;cursor:default}
+  `;
+  document.head.appendChild(s);
+})();
+
+const __twkSendChat = (text) =>
+  window.parent.postMessage({ type: 'miaoda:tweaks:chat', text }, '*');
+
+const __TWK_SPARK_PATH = 'M18.3658 62.2435L36.7823 51.9165L37.0858 51.012L36.7823 50.5083H35.8716L32.7853 50.3206L22.2616 50.0389L13.1546 49.6634L4.30054 49.194L2.07438 48.7246L0 45.9551L0.202378 44.5938L2.07438 43.3264L4.75589 43.5611L10.6755 43.9836L19.5801 44.5938L26.0056 44.9693L35.568 45.9551H37.0858L37.2882 45.3448L36.7823 44.9693L36.3775 44.5938L27.1693 38.3507L17.2022 31.7789L11.9909 27.9767L9.20822 26.0522L7.79157 24.2684L7.18443 20.3254L9.71416 17.5089L13.1546 17.7436L14.0147 17.9783L17.5057 20.654L24.9431 26.4277L34.6573 33.5627L36.0739 34.7362L36.6444 34.3512L36.7317 34.079L36.0739 32.9994L30.8121 23.4704L25.1961 13.7537L22.6664 9.71675L22.0086 7.32277C21.7539 6.31812 21.6039 5.48695 21.6039 4.45938L24.4878 0.516349L26.1068 0L30.0026 0.516349L31.6216 1.92457L34.0502 7.46359L37.9459 16.1476L44.0173 27.9767L45.7881 31.4973L46.7494 34.7362L47.1036 35.722H47.7107V35.1587L48.2166 28.4931L49.1274 20.3254L50.0381 9.81063L50.3416 6.85336L51.8089 3.28586L54.7434 1.36128L57.0201 2.44092L58.8921 5.11655L58.6391 6.85336L57.5261 14.0822L55.3505 25.395L53.9338 32.9994H54.7434L55.7047 32.0136L59.5498 26.944L65.9753 18.8702L68.8086 15.6782L72.1479 12.1577L74.2729 10.4678H78.3204L81.2549 14.8802L79.9395 19.4335L75.7907 24.6909L72.3503 29.1503L67.4173 35.7593L64.3563 41.0732L64.6308 41.5116L65.3682 41.4487L76.499 39.0548L82.5198 37.9751L89.7042 36.7547L92.9423 38.2568L93.2964 39.8058L92.0316 42.9509L84.3412 44.8285L75.3354 46.6592L61.9245 49.8162L61.776 49.9356L61.9513 50.1956L67.9991 50.743L70.5795 50.8839H76.9038L88.6923 51.7757L91.7786 53.7942L93.6 56.282L93.2964 58.2066L88.5405 60.6006L82.1656 59.0985L67.2402 55.531L62.1302 54.2636H61.4218V54.6861L65.6718 58.8638L73.514 65.9049L83.2787 75.0114L83.7846 77.2646L82.5198 79.0483L81.2043 78.8606L72.6032 72.3827L69.264 69.4724L61.776 63.1354H61.2701V63.7926L62.9903 66.3274L72.1479 80.081L72.6032 84.3057L71.9455 85.667L69.5676 86.5119L66.9872 86.0425L61.5736 78.4851L56.0588 70.0357L51.6065 62.4313L51.0687 62.7708L48.419 91.0652L47.2048 92.5204L44.3715 93.6L41.9935 91.8162L40.7286 88.9059L41.9935 83.1322L43.5114 75.6217L44.7256 69.6602L45.8387 62.2435L46.5185 59.7659L46.4584 59.6001L45.9153 59.6914L40.3239 67.3601L31.824 78.8606L25.0949 86.0425L23.4759 86.6997L20.6932 85.2445L20.9462 82.6628L22.5146 80.3627L31.824 68.5336L37.44 61.1639L41.0595 56.9335L41.0243 56.3216L40.8245 56.3046L16.0891 72.4297L11.6874 72.993L9.76476 71.2092L10.0177 68.2989L10.9284 67.3601L18.3658 62.2435Z';
+
+function ClaudeSpark({ size = 12 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 94 94" fill="currentColor"
+         style={{ display: 'inline-block', verticalAlign: '-1px' }}>
+      <path d={__TWK_SPARK_PATH} />
+    </svg>
+  );
+}
+
+// Typewriter-cycles through `suggestions`. Clicking the field while a
+// suggestion is animating freezes it as ghost text; Tab accepts it into the
+// input. Enter posts miaoda:tweaks:chat (host drops the text into the chat
+// composer for the user to send). After the cycle the static placeholder
+// types in and "Ideas" appears — clicking asks for three more suggestions.
+function TweakSuggestionBar({
+  suggestions = [],
+  placeholder = 'Describe a tweak…',
+  ideasPrompt = 'Suggest three more tweak ideas for this design and update the suggestions on TweakSuggestionBar.',
+}) {
+  const [val, setVal] = React.useState('');
+  const [ghost, setGhost] = React.useState('');
+  const [focused, setFocused] = React.useState(false);
+  const inputRef = React.useRef(null);
+  const tw = useTwkTypewriter(suggestions, { placeholder, enabled: !val && !ghost && !focused });
+
+  const freeze = () => {
+    tw.markPlayed();
+    if (val || ghost) return;
+    const target = !tw.done ? suggestions[tw.idx] : '';
+    if (target) setGhost(target);
+    inputRef.current?.focus();
+  };
+
+  const submit = () => {
+    const v = (val || ghost).trim();
+    if (!v) return;
+    __twkSendChat(v);
+    setVal('');
+    setGhost('');
+  };
+
+  const onKeyDown = (e) => {
+    if (e.key === 'Tab' && ghost && !val) {
+      e.preventDefault();
+      setVal(ghost);
+      setGhost('');
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      submit();
+    } else if (e.key === 'Escape') {
+      setGhost('');
+    }
+  };
+
+  const requestIdeas = () => __twkSendChat(ideasPrompt);
+
+  const showAnim = !val && !ghost && !focused && !tw.done;
+  const showStatic = !val && !ghost && !focused && tw.done;
+
+  return (
+    <div className="twk-sugg" onMouseDown={freeze}>
+      <div className="twk-sugg-field">
+        <input
+          ref={inputRef}
+          value={val}
+          placeholder={focused && !ghost ? placeholder : ''}
+          onChange={(e) => { setVal(e.target.value); setGhost(''); }}
+          onFocus={() => { setFocused(true); tw.markPlayed(); }}
+          onBlur={() => { setFocused(false); if (!val) setGhost(''); }}
+          onKeyDown={onKeyDown}
+        />
+        {showAnim && (
+          <div className="twk-sugg-ghost">
+            {tw.text}<span className="twk-sugg-caret" />
+          </div>
+        )}
+        {showStatic && (
+          <div className="twk-sugg-ghost">
+            {tw.tail}{tw.tail.length < placeholder.length && <span className="twk-sugg-caret" />}
+          </div>
+        )}
+        {ghost && !val && (
+          <div className="twk-sugg-ghost hint">{ghost}</div>
+        )}
+      </div>
+      {val || ghost ? (
+        <button className="twk-sugg-send"
+                onMouseDown={(e) => { e.stopPropagation(); e.preventDefault(); }}
+                onClick={submit}>
+          Add
+        </button>
+      ) : tw.done && !focused ? (
+        <button className="twk-sugg-ideas"
+                onMouseDown={(e) => { e.stopPropagation(); e.preventDefault(); }}
+                onClick={requestIdeas}>
+          Ideas <ClaudeSpark />
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
+// Minimal type→pause→erase cycler. Plays once per unique `items` content per
+// session — a reload from a tweak-value write skips straight to done; a new
+// suggestion set (after "Ideas") gets a fresh animation.
+function useTwkTypewriter(items, { placeholder, typeMs = 35, eraseMs = 22, pauseMs = 1800, enabled = true } = {}) {
+  const key = React.useMemo(() => '__twk_played:' + JSON.stringify(items), [items.join('\n')]);
+  const played = () => { try { return sessionStorage.getItem(key) === '1'; } catch { return false; } };
+
+  const [text, setText] = React.useState('');
+  const [tail, setTail] = React.useState(() => (items.length === 0 || played() ? placeholder : ''));
+  const [idx, setIdx] = React.useState(0);
+  const [done, setDone] = React.useState(() => items.length === 0 || played());
+  const phase = React.useRef('type');
+  const n = React.useRef(0);
+
+  const markPlayed = React.useCallback(() => {
+    try { sessionStorage.setItem(key, '1'); } catch {}
+    setDone(true);
+  }, [key]);
+
+  React.useEffect(() => {
+    const skip = items.length === 0 || played();
+    setText(''); setIdx(0);
+    setDone(skip);
+    setTail(skip ? placeholder : '');
+    phase.current = 'type'; n.current = 0;
+  }, [key]);
+
+  React.useEffect(() => {
+    if (done || !enabled) return;
+    const item = items[idx] ?? '';
+    let t;
+    const tick = () => {
+      if (phase.current === 'type') {
+        n.current++;
+        setText(item.slice(0, n.current));
+        if (n.current >= item.length) { phase.current = 'pause'; t = setTimeout(tick, pauseMs); }
+        else t = setTimeout(tick, typeMs + Math.random() * 20);
+      } else if (phase.current === 'pause') {
+        phase.current = 'erase'; t = setTimeout(tick, eraseMs);
+      } else {
+        n.current--;
+        setText(item.slice(0, n.current));
+        if (n.current <= 0) {
+          if (idx === items.length - 1) { markPlayed(); return; }
+          phase.current = 'type'; setIdx((i) => i + 1);
+        } else t = setTimeout(tick, eraseMs);
+      }
+    };
+    phase.current = 'type'; n.current = 0; setText('');
+    t = setTimeout(tick, 400);
+    return () => clearTimeout(t);
+  }, [idx, done, key, enabled, typeMs, eraseMs, pauseMs]);
+
+  React.useEffect(() => {
+    if (!done || tail === placeholder) return;
+    let i = 0;
+    const t = setInterval(() => {
+      i++; setTail(placeholder.slice(0, i));
+      if (i >= placeholder.length) clearInterval(t);
+    }, 28);
+    return () => clearInterval(t);
+  }, [done, placeholder]);
+
+  return { text, tail, idx, done, markPlayed };
+}
+
+Object.assign(window, { TweakSuggestionBar });
+</script>
+  <script>// Fictional demo data only. No production screenshots, addresses or identifiers are embedded.
+window.DEMO = {
+  roles: {"业务用户":1,"内容管理员":2,"数据管理员":3,"系统管理员":4},
+  projects: ["示例项目 A","示例项目 B","示例项目 C"],
+  groups: [
+    {name:"问数工作台",icon:"bot",level:1,items:[["ask","智能问数"],["subscriptions","订阅中心"],["mcp","MCP 接入"]]},
+    {name:"分析与知识",icon:"spark",level:2,items:[["abilities","分析能力"],["knowledge","知识库"]]},
+    {name:"数据治理",icon:"layers",level:3,items:[["domains","业务域"],["warehouse","数据仓库"],["metrics","指标管理"],["connections","连接源"],["drafts","我的草稿"]]},
+    {name:"平台管理",icon:"shield",level:4,items:[["models","模型配置"],["security","权限与安全"],["audit","日志与用量"]]}
+  ],
+  meta: {
+    ask:["智能问数","从业务问题开始，获得有依据的数据分析"],
+    subscriptions:["订阅中心","将一次分析变成持续跟踪，统一管理任务、接收人与执行记录"],
+    mcp:["MCP 接入","把平台能力接入个人智能体，沿用项目与数据访问权限"],
+    abilities:["分析能力","技能定义何时分析，分析包定义如何分析"],
+    knowledge:["知识库","按项目维护业务说明、活动资料与玩法知识"],
+    domains:["业务域","按业务域与业务过程组织数据资产"],
+    warehouse:["数据仓库","浏览分层资产，查看表结构与业务关联"],
+    metrics:["指标管理","维护统一指标口径，关联来源表与业务过程"],
+    connections:["连接源","管理项目数据库接入与元数据同步"],
+    drafts:["我的草稿","集中处理指标、表归类和表详情的待提交内容"],
+    models:["模型配置","统一管理运行框架、模型厂商与路由策略"],
+    security:["权限与安全","从成员角色到数据策略、资产分级，查看完整授权范围"],
+    audit:["日志与用量","集中查看问数、订阅、分享、授权与 MCP 调用记录"]
+  },
+  mapping: [
+    ["智能问数","问数工作台 / 智能问数","保留高频入口；历史对话在问数页内查看"],
+    ["订阅中心","问数工作台 / 订阅中心","任务、执行记录在同一页面内切换"],
+    ["MCP市场、MCP用户","问数工作台 / MCP 接入","普通用户看接入说明；管理员可管理接入用户"],
+    ["Skill管理、分析包管理","分析与知识 / 分析能力","同一能力体系，用技能与分析包两个标签组织"],
+    ["知识库","分析与知识 / 知识库","独立维护项目知识的分类与版本"],
+    ["业务域管理","数据治理 / 业务域","保留业务过程与关联表树"],
+    ["数据仓库","数据治理 / 数据仓库","面向资产发现，保留分层视图与表明细"],
+    ["指标管理","数据治理 / 指标管理","独立维护定义、表达式与可用状态"],
+    ["连接源管理","数据治理 / 连接源","配置接入的技术操作，独立于资产浏览"],
+    ["我的草稿","数据治理 / 我的草稿","同时承载指标、表归类、表详情三类草稿"],
+    ["模型配置","平台管理 / 模型配置","框架、厂商、模型、变更记录四个标签"],
+    ["成员权限、数据权限策略、资产分级、系统管理","平台管理 / 权限与安全","成员、策略、分级、系统角色与项目管理集中关联"],
+    ["问数日志、订阅推送日志、分享日志、授权日志、MCP日志","平台管理 / 日志与用量","统一审计入口；订阅与 MCP 页保留上下文跳转"]
+  ],
+  skills: [
+    {name:"经营大盘解读",desc:"汇总活跃、付费与留存变化，定位异常指标并给出后续验证方向。",scene:"分析整体经营、昨日表现或经营异常时使用。",pkg:"趋势诊断 · 对比分析 · 异动归因",status:"已启用"},
+    {name:"付费转化诊断",desc:"按渠道与用户阶段拆解转化变化，识别变化来源。",scene:"分析付费率下降、渠道转化差异时使用。",pkg:"漏斗分析 · 异动归因",status:"已启用"},
+    {name:"留存分析",desc:"按新增 cohort 对比留存趋势，校验各组口径。",scene:"分析次日留存、长期留存及新用户质量时使用。",pkg:"留存分析 · 对比分析",status:"已启用"},
+    {name:"活动效果复盘",desc:"比较活动前后变化，按参与与未参与群体拆分。",scene:"评估活动表现和用户参与效果时使用。",pkg:"对比分析 · 假设验证",status:"草稿"}
+  ],
+  packs: [
+    ["RFM 分析","方法型","按最近行为、行为频次与金额划分用户群。"],
+    ["假设验证","方法型","把业务假设拆成可验证的指标与证据。"],
+    ["留存分析","方法型","构建 cohort，对比相同时间窗内的留存。"],
+    ["异动归因","方法型","先确认异常，再按维度贡献定位变化来源。"],
+    ["趋势诊断","方法型","观察趋势、拐点与周期，不推断未验证原因。"],
+    ["对比分析","方法型","校验口径后进行同比、环比与群体对比。"],
+    ["渠道效果复盘","场景型","围绕渠道、用户质量与转化构建分析步骤。"],
+    ["活动用户诊断","场景型","按活动参与、行为阶段与留存进行拆解。"]
+  ],
+  knowledge: [
+    ["核心指标口径说明","明确活跃、付费、留存的统计口径","业务知识","v1.2","已发布","成员 01"],
+    ["项目数据使用指南","常用表与指标的使用范围说明","业务知识","v1.0","已发布","成员 02"],
+    ["秋季运营活动说明","活动周期、参与条件与奖励规则","运营活动","v1.1","已发布","成员 03"],
+    ["新手流程与功能规则","新用户引导与关键行为定义","玩法规则","v1.0","已发布","成员 02"],
+    ["版本更新摘要","示例版本功能变更记录","版本公告","未发布","草稿","成员 04"],
+    ["渠道分类约定","渠道分类与历史名称说明","业务知识","v1.0","已发布","成员 01"]
+  ],
+  metrics: [
+    ["日活跃用户数","原子指标","用户域","登录行为","demo_dws.user_daily","可用"],
+    ["付费用户数","原子指标","付费域","支付行为","demo_dws.payment_daily","可用"],
+    ["付费率","复合指标","付费域","支付行为","demo_dws.payment_daily","可用"],
+    ["次日留存率","派生指标","用户域","用户留存","demo_dws.cohort_daily","可用"],
+    ["活动参与用户数","原子指标","运营域","活动参与","demo_dws.event_daily","可用"],
+    ["新用户转化率","复合指标","用户域","新用户转化","demo_dws.user_daily","不可用"]
+  ],
+  connections: [
+    ["示例项目 A","分析数仓 A","StarRocks","warehouse-a.example.invalid","已启用","最近 5 分钟"],
+    ["示例项目 B","分析数仓 B","MySQL","warehouse-b.example.invalid","已启用","最近 10 分钟"],
+    ["示例项目 C","归档数据源","StarRocks","archive.example.invalid","未启用","未同步"]
+  ],
+  tables: [
+    ["demo_ods.user_event","ODS","用户事件原始数据","用户域","24","已归类"],
+    ["demo_dwd.user_login","DWD","登录行为明细","用户域","18","已归类"],
+    ["demo_dwd.payment_event","DWD","支付行为明细","付费域","22","待补充"],
+    ["demo_dws.user_daily","DWS","用户日粒度汇总","用户域","16","已归类"],
+    ["demo_dws.payment_daily","DWS","支付日粒度汇总","付费域","15","已归类"],
+    ["demo_ads.operation_summary","ADS","经营分析结果汇总","运营域","12","已归类"],
+    ["demo_dim.channel","DIM","公共渠道维度","公共域","8","已归类"]
+  ],
+  subscriptions: [
+    ["每日经营简报","近七日核心指标趋势","个人订阅","每天 09:00","运行中","成员 01"],
+    ["渠道转化周报","各渠道付费转化对比","多人订阅","周一 10:00","运行中","分析组"],
+    ["活动效果跟踪","本周活动参与与留存","个人订阅","每天 16:00","已暂停","成员 02"]
+  ],
+  logs: {
+    "问数":[["近七日活跃趋势","成员 01","示例项目 A","快速模式","成功","8.2 秒","12.4k"],["昨日付费率变化","成员 02","示例项目 B","深度模式","成功","24.6 秒","38.1k"],["查询用户明细","成员 03","示例项目 A","深度模式","已拦截","1.2 秒","1.8k"]],
+    "订阅推送":[["每日经营简报","成员 01","示例项目 A","定时触发","成功","16.3 秒","24.7k"],["渠道转化周报","成员 02","示例项目 B","手动触发","成功","21.5 秒","31.2k"],["活动效果跟踪","成员 03","示例项目 C","定时触发","失败","4.1 秒","2.3k"]],
+    "分享":[["渠道分析结果","成员 02","示例项目 A","链接分享","有效","—","—"],["经营简报","成员 01","示例项目 B","文档分享","已过期","—","—"]],
+    "授权":[["添加项目成员","成员 01","示例项目 A","角色授权","成功","—","—"],["修改数据策略","成员 02","示例项目 B","策略变更","成功","—","—"],["开通 MCP 接入","成员 03","示例项目 A","接入授权","成功","—","—"]],
+    "MCP":[["list_demo_tables","成员 01","示例项目 A","查询 MCP","成功","174 ms","—"],["search_demo_metrics","成员 02","示例项目 B","治理 MCP","成功","208 ms","—"],["execute_demo_query","成员 03","示例项目 A","查询 MCP","已拒绝","45 ms","—"]]
+  }
+};
+</script>
+  <script type="text/babel">const iconPaths = {
+  bot: ["M8 4V2", "M16 4V2", "M7 4h10a4 4 0 0 1 4 4v7a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4Z", "M8 11h.01", "M16 11h.01", "M8 15h8", "M9 19v2", "M15 19v2"],
+  calendar: ["M6 3v3", "M18 3v3", "M4 8h16", "M5 5h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z", "M8 12h3", "M8 16h6"],
+  spark: ["M12 3l1.3 4.2L17.5 9l-4.2 1.3L12 14.5l-1.3-4.2L6.5 9l4.2-1.8L12 3Z", "M18.5 15l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2Z"],
+  book: ["M4 5.5A2.5 2.5 0 0 1 6.5 3H11v16H6.5A2.5 2.5 0 0 0 4 21V5.5Z", "M20 5.5A2.5 2.5 0 0 0 17.5 3H13v16h4.5A2.5 2.5 0 0 1 20 21V5.5Z"],
+  cpu: ["M9 2v3", "M15 2v3", "M9 19v3", "M15 19v3", "M2 9h3", "M2 15h3", "M19 9h3", "M19 15h3", "M7 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Z", "M9 9h6v6H9Z"],
+  layers: ["m12 2 9 5-9 5-9-5 9-5Z", "m3 12 9 5 9-5", "m3 17 9 5 9-5"],
+  plug: ["M12 22v-5", "M9 8V2", "M15 8V2", "M6 8h12v3a6 6 0 0 1-12 0V8Z"],
+  gauge: ["M4.9 19a9 9 0 1 1 14.2 0", "M12 13l4-4", "M12 19h.01"],
+  shield: ["M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z", "m9 12 2 2 4-4"],
+  audit: ["M4 3h16v18H4Z", "M8 7h8", "M8 11h8", "M8 15h5"],
+  settings: ["M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z", "M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2 3.46-.08-.02a1.7 1.7 0 0 0-1.8.38l-.4.23a1.7 1.7 0 0 0-.9 1.58V22h-4v-.09a1.7 1.7 0 0 0-.9-1.58l-.4-.23a1.7 1.7 0 0 0-1.8-.38l-.08.02-2-3.46.06-.06A1.7 1.7 0 0 0 5.6 15l-.4-.7a1.7 1.7 0 0 0-1.42-.86H3v-4h.78A1.7 1.7 0 0 0 5.2 8.6l.4-.7a1.7 1.7 0 0 0-.1-1.88l-.06-.06 2-3.46.08.02a1.7 1.7 0 0 0 1.8-.38l.4-.23a1.7 1.7 0 0 0 .9-1.58V.22h4v.09a1.7 1.7 0 0 0 .9 1.58l.4.23a1.7 1.7 0 0 0 1.8.38l.08-.02 2 3.46-.06.06a1.7 1.7 0 0 0-.34 1.88l.4.7a1.7 1.7 0 0 0 1.42.86H22v4h-.78a1.7 1.7 0 0 0-1.42.86l-.4.7Z"],
+  chevron: ["m9 18 6-6-6-6"],
+  search: ["m21 21-4.35-4.35", "M19 11a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"],
+  arrow: ["M5 12h14", "m13 6 6 6-6 6"],
+  plus: ["M12 5v14", "M5 12h14"],
+  palette: ["M12 22a10 10 0 1 1 10-10c0 2-1.5 3-3.5 3H17a2 2 0 0 0-2 2c0 1.5-1.5 5-3 5Z", "M7.5 10h.01", "M9.5 6.5h.01", "M14.5 6.5h.01", "M17 10h.01"],
+};
+
+function Icon({ name, small = false }) {
+  return <svg className={`icon ${small ? "sm" : ""}`} viewBox="0 0 24 24" aria-hidden="true">
+    {(iconPaths[name] || iconPaths.layers).map((d, index) => <path key={index} d={d}></path>)}
+  </svg>;
+}
+
+
+window.Icon = Icon;
+
+function Badge({children}) {
+  const text=String(children);
+  const tone=/失败|不可用|拒绝|拦截|P0/.test(text)?"red":/草稿|待|暂停|P1/.test(text)?"amber":/未启用|过期/.test(text)?"gray":/成功|发布|可用|启用|正常|有效/.test(text)?"green":"blue";
+  return <span className={`badge ${tone}`}>{children}</span>;
+}
+function Button({children,onClick,primary=false,quiet=false,disabled=false}) {return <button disabled={disabled} onClick={onClick} className={`btn ${primary?"primary":""} ${quiet?"quiet":""}`}>{children}</button>}
+function Tabs({items,value,onChange}) {return <div className="tabs" role="tablist">{items.map(x=><button role="tab" aria-selected={x===value} className={x===value?"active":""} key={x} onClick={()=>onChange(x)}>{x}</button>)}</div>}
+function Stats({items}) {return <div className="stats">{items.map(([label,value,hint],i)=><div className="stat" key={label}><span className={`stat-icon tone-${i}`}><Icon name={["gauge","layers","shield","calendar"][i%4]}/></span><div><span className="muted">{label}</span><strong>{value}</strong>{hint&&<small>{hint}</small>}</div></div>)}</div>}
+function SearchBar({query,setQuery,placeholder="搜索名称、状态或关键词",children,onReset}) {return <div className="filters"><div className="search"><Icon name="search"/><input aria-label={placeholder} placeholder={placeholder} value={query} onChange={e=>setQuery(e.target.value)}/></div>{children}<span className="spacer"/><Button onClick={()=>setQuery("")}>重置</Button></div>}
+function Select({label,options,value,onChange}) {return <label className="select-label">{label&&<span>{label}</span>}<select value={value} onChange={e=>onChange?.(e.target.value)}>{options.map(x=><option key={x}>{x}</option>)}</select></label>}
+function DataTable({headers,rows,query="",onDetail,onEdit,onToggle,actions=["查看"],selectable=false}) {
+  const [selected,setSelected]=React.useState([]);
+  const [sort,setSort]=React.useState(null);
+  React.useEffect(()=>setSelected([]),[rows]);
+  const filtered=rows.filter(r=>r.join(" ").toLowerCase().includes(query.toLowerCase()));
+  const visible=sort?[...filtered].sort((a,b)=>String(a[sort.column]).localeCompare(String(b[sort.column]),'zh-CN',{numeric:true})*sort.direction):filtered;
+  const switchOne=i=>setSelected(a=>a.includes(i)?a.filter(n=>n!==i):[...a,i]);
+  return <><div className="table-scroll"><table><thead><tr>{selectable&&<th className="check"><input aria-label="选择全部" type="checkbox" checked={visible.length>0&&selected.length===visible.length} onChange={e=>setSelected(e.target.checked?visible.map((_,i)=>i):[])}/></th>}{headers.map((h,i)=><th key={h}><button className="th-button" onClick={()=>setSort({column:i,direction:sort?.column===i?-sort.direction:1})}>{h}{i===0&&<span className="sort">↕</span>}</button></th>)}{actions.length>0&&<th className="action-col">操作</th>}</tr></thead><tbody>{visible.map((r,i)=><tr key={r.join("|")}>{selectable&&<td className="check"><input aria-label={`选择 ${r[0]}`} type="checkbox" checked={selected.includes(i)} onChange={()=>switchOne(i)}/></td>}{r.map((c,j)=><td key={j}>{j===0?<button className="text-link name-cell" onClick={()=>onDetail?.(r)}>{c}</button>:/^(已|未|可用|不可用|成功|失败|正常|有效|草稿|运行中|P[0-3]|原子指标|派生指标|复合指标)/.test(c)?<Badge>{c}</Badge>:<span className={/demo_|\.invalid|k$|ms$/.test(c)?"mono":""}>{c}</span>}</td>)}{actions.length>0&&<td className="action-col">{actions.map(a=><button className={`text-link ${a==="暂停"?"warning":""}`} key={a} onClick={()=>a==="编辑"?onEdit?.(r):a==="暂停"||a==="启用"?onToggle?.(r):onDetail?.(r,a)}>{a}</button>)}</td>}</tr>)}</tbody></table>{visible.length===0&&<div className="empty"><Icon name="search"/><b>没有找到匹配内容</b><span>请调整筛选条件</span></div>}</div><div className="table-footer"><span>{selected.length>0?`已选择 ${selected.length} 项 · `:""}共 {visible.length} 条</span><span>‹ <b className="page-num">1</b> ›<select aria-label="每页条数"><option>10 条/页</option><option>20 条/页</option></select></span></div></>;
+}
+function LineChart({small=false,business=false}) {return <div className={`chart ${small?"small":""}`}><div className="chart-title"><strong>{business?"近七日活跃用户趋势":"每日 Token 与调用趋势"}</strong><span><i className="dot"/>{business?"活跃用户（演示）":"Token（演示）"}　<i className="dot teal"/>{business?"新增用户":"调用次数"}</span></div><svg viewBox="0 0 900 180" role="img" aria-label="七日演示用量趋势"><defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#5765df" stopOpacity=".18"/><stop offset="100%" stopColor="#5765df" stopOpacity="0"/></linearGradient></defs>{[30,65,100,135].map((y,i)=><g key={y}><line x1="44" y1={y} x2="875" y2={y} stroke="#e8ebf3"/><text x="8" y={y+4} fill="#8d96a9" fontSize="10">{(4-i)*10}k</text></g>)}<path d="M45 128 C100 130 110 100 180 106 S255 55 320 61 S410 72 460 41 S550 110 600 94 S690 42 740 50 S820 35 875 67 L875 138 L45 138Z" fill="url(#area)"/><path d="M45 128 C100 130 110 100 180 106 S255 55 320 61 S410 72 460 41 S550 110 600 94 S690 42 740 50 S820 35 875 67" fill="none" stroke="#5765df" strokeWidth="3"/><path d="M45 133 L180 114 L320 79 L460 66 L600 109 L740 68 L875 82" fill="none" stroke="#40a99a" strokeWidth="2" strokeDasharray="5 5"/>{["10-07","10-08","10-09","10-10","10-11","10-12","10-13"].map((s,i)=><text key={s} x={45+i*138} y="164" textAnchor="middle" fill="#8d96a9" fontSize="10">{s}</text>)}</svg></div>}
+function Sheet({title,children,onClose,wide=false}) {React.useEffect(()=>{const h=e=>{if(e.key==="Escape")onClose()};window.addEventListener("keydown",h);return()=>window.removeEventListener("keydown",h)},[]);return <div className="overlay" onClick={onClose}><section className={`sheet ${wide?"wide":""}`} role="dialog" aria-modal="true" aria-label={title} onClick={e=>e.stopPropagation()}><header><div><span className="eyebrow">演示内容</span><h2>{title}</h2></div><button className="close" aria-label="关闭" onClick={onClose}>×</button></header><div className="sheet-body">{children}</div></section></div>}
+function EditForm({title,initial="",onSave,onClose}) {const [name,setName]=React.useState(initial),[error,setError]=React.useState("");return <Sheet title={title} onClose={onClose}><div className="form"><label>名称 <input value={name} onChange={e=>setName(e.target.value)} placeholder="输入演示名称" autoFocus/></label><label>所属项目<select>{DEMO.projects.map(x=><option key={x}>{x}</option>)}</select></label><label>说明<textarea placeholder="补充用途与使用范围" rows="4"/></label>{error&&<p className="error">{error}</p>}<p className="muted">本操作仅更新当前浏览器中的演示数据。</p><div className="form-actions"><Button onClick={onClose}>取消</Button><Button primary onClick={()=>name.trim()?onSave(name.trim()):setError("请填写名称")}>保存</Button></div></div></Sheet>}
+Object.assign(window,{Badge,Button,Tabs,Stats,SearchBar,Select,DataTable,LineChart,Sheet,EditForm});
+
+
+</script>
+  <script type="text/babel">function useDemoRows(key,initial) {
+  const [rows,setRows]=React.useState(()=>{try{return JSON.parse(localStorage.getItem("demo-v2-"+key))||initial}catch{return initial}});
+  React.useEffect(()=>{localStorage.setItem("demo-v2-"+key,JSON.stringify(rows))},[rows]);
+  return [rows,setRows];
+}
+function Panel({children,className=""}) {return <section className={`panel ${className}`}>{children}</section>}
+function SectionHead({title,desc,children}) {return <div className="section-head"><div><h2>{title}</h2>{desc&&<p>{desc}</p>}</div><div className="actions">{children}</div></div>}
+function useTableActions(ctx,rows,setRows,label) {return {
+  onDetail:ctx.detail,
+  onEdit:r=>ctx.edit("编辑"+label,r[0],name=>setRows(rows.map(x=>x===r?[name,...x.slice(1)]:x))),
+  onToggle:r=>{setRows(rows.map(x=>x===r?x.map(c=>c==="运行中"?"已暂停":c==="已暂停"?"运行中":c):x));ctx.toast("演示状态已更新")}
+}}
+function AskPage({ctx}) {
+  const [mode,setMode]=React.useState("深度模式"),[q,setQ]=React.useState(""),[answer,setAnswer]=React.useState(""),[history,setHistory]=React.useState(false);
+  const prompts=["近七日活跃用户趋势如何？","昨日付费率变化有哪些原因？","本周与上周留存率对比","分析各渠道的新用户转化"];
+  const send=()=>{if(!q.trim())return ctx.toast("请先输入问题");setAnswer(q.trim());setQ("")};
+  return <div className="ask-page"><div className="ask-tools"><Button onClick={()=>setHistory(!history)}><Icon name="audit"/>历史对话</Button>{answer&&<Button onClick={()=>setAnswer("")}>＋ 新对话</Button>}</div>{!answer?<div className="ask-welcome"><div className="orb"><Icon name="bot"/></div><span className="eyebrow">你的数据助手</span><h1>今天，想从数据中发现什么？</h1><p>选择项目，用自然语言开始一次分析</p><div className="mode-switch">{["深度模式","快速模式"].map(x=><button key={x} className={mode===x?"active":""} onClick={()=>setMode(x)}><Icon name={x==="深度模式"?"layers":"spark"}/>{x}</button>)}</div><div className="mode-desc">{mode==="深度模式"?"适合复杂分析、异常归因与连续追问，结合技能逐步验证。":"适合指标查询与趋势对比，直接获取清晰的数据结果。"}</div><div className="prompt-grid">{prompts.map(x=><button key={x} onClick={()=>setQ(x)}><Icon name="book"/>{x}<span>↗</span></button>)}</div></div>:<div className="conversation"><div className="question-bubble">{answer}</div><Panel><div className="answer-title"><Icon name="bot"/><strong>分析结果</strong><Badge>演示数据</Badge></div><p>已按当前项目与近七日时间窗完成口径校验。活跃规模整体平稳，渠道之间存在差异；建议先按渠道拆分，再比较相同用户群的变化。</p><div className="evidence"><span>✓ 指标口径确认</span><span>✓ 数据权限校验</span><span>✓ 查询结果核验</span></div><LineChart small business/><div className="actions"><Button onClick={()=>ctx.detail(["生成的 SQL","演示查询","已校验"])}>查看 SQL</Button><Button onClick={()=>ctx.navigate("subscriptions")}>创建订阅</Button><Button onClick={()=>ctx.toast("演示文档已生成")}>生成文档</Button></div></Panel></div>}<div className="composer"><textarea aria-label="输入问题" placeholder="输入你的问题，例如：昨日付费率为什么下降？" value={q} onChange={e=>setQ(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}}}/><div className="composer-footer"><Select options={["Auto","低","中","高"]}/><span className="composer-project"><Icon name="layers"/>{ctx.project}</span><Select options={["选择技能","经营大盘解读","付费转化诊断","留存分析"]}/><span className="spacer"/><Button primary onClick={send}>发送 <Icon name="arrow"/></Button></div></div><p className="composer-note">Enter 发送 · Shift + Enter 换行 <span>所有结果为虚构演示数据</span></p>{history&&<Sheet title="历史对话" onClose={()=>setHistory(false)}>{prompts.map((x,i)=><button className="history-row" key={x} onClick={()=>{setAnswer(x);setHistory(false)}}><b>{x}</b><small>{i+1} 天前 · {ctx.project}</small></button>)}</Sheet>}</div>;
+}
+function SubscriptionPage({ctx}) {
+  const [tab,setTab]=React.useState("订阅任务"),[q,setQ]=React.useState(""),[scope,setScope]=React.useState("我创建的");
+  const [rows,setRows]=useDemoRows("subscriptions",DEMO.subscriptions);
+  const add=()=>ctx.edit("新建订阅","",name=>{setRows([[name,"近七日核心指标趋势","个人订阅","每天 09:00","运行中","成员 01"],...rows]);ctx.toast("订阅已创建")});
+  return <><Tabs items={["订阅任务","执行记录"]} value={tab} onChange={setTab}/><Stats items={[["运行中",rows.filter(x=>x[4]==="运行中").length,"按当前权限执行"],["多人订阅",rows.filter(x=>x[2]==="多人订阅").length,"统一管理接收人"],["近期成功","12","演示执行批次"],["推送成功率","92.3%","演示统计"]]}/><Panel><SectionHead title={tab} desc="任务与执行记录在此切换，无需离开当前工作流程"><Button onClick={()=>ctx.navigate("audit","订阅推送")}>查看全部推送日志 ↗</Button><Button primary onClick={add}>＋ 新建订阅</Button></SectionHead><SearchBar query={q} setQuery={setQ}><Select label="类型" options={["全部类型","个人订阅","多人订阅"]} onChange={x=>setQ(x==="全部类型"?"":x)}/></SearchBar>{tab==="订阅任务"?<><div className="segmented">{["全部","我创建的","我收到的"].map(x=><button key={x} className={scope===x?"active":""} onClick={()=>setScope(x)}>{x}</button>)}</div><DataTable headers={["任务名称","用户问题","订阅类型","执行频率","状态","接收对象"]} rows={scope==="我收到的"?rows.filter(x=>x[2]==="多人订阅"):rows} query={q} {...useTableActions(ctx,rows,setRows,"订阅")} actions={["编辑","暂停","立即发送"]}/></>:<DataTable headers={["任务名称","发起人","项目","触发方式","结果","耗时","Token"]} rows={DEMO.logs["订阅推送"]} query={q} onDetail={ctx.detail} actions={["查看"]}/>}</Panel></>;
+}
+function AbilitiesPage({ctx}) {
+  const [tab,setTab]=React.useState("技能"),[selected,setSelected]=React.useState(0),[q,setQ]=React.useState(""),[skills,setSkills]=React.useState(DEMO.skills),[kind,setKind]=React.useState("全部类型");
+  const skill=skills[selected];
+  const add=()=>ctx.edit(tab==="技能"?"新建技能":"新建分析包","",name=>{if(tab==="技能"){setSkills([...skills,{name,desc:"自定义演示分析能力",scene:"按业务问题选择使用",pkg:"趋势诊断",status:"草稿"}]);setSelected(skills.length)}ctx.toast("已保存演示内容")});
+  return <><Tabs items={["技能","分析包"]} value={tab} onChange={setTab}/><Panel><SectionHead title={tab==="技能"?"分析技能":"可复用分析包"} desc={tab==="技能"?"定义触发场景、分析步骤与报告输出":"方法型提供通用分析方法，场景型补充项目业务规则"}><Button onClick={()=>ctx.toast("已刷新演示列表")}>刷新</Button><Button primary onClick={add}>＋ 创建{tab}</Button></SectionHead><SearchBar query={q} setQuery={setQ}/>{tab==="技能"?<div className="master-detail"><div className="item-list">{skills.map((s,i)=>s.name.includes(q)&&<button key={s.name} className={i===selected?"selected":""} onClick={()=>setSelected(i)}><div><b>{s.name}</b><Badge>{s.status}</Badge></div><p>{s.desc}</p><small>{ctx.project} · 成员 {String(i+1).padStart(2,"0")}</small></button>)}</div><div className="detail-content"><SectionHead title={skill.name} desc="更新于 2026-10-12 · 演示版本 v1.0"><Button onClick={()=>ctx.edit("编辑技能",skill.name,name=>setSkills(skills.map((x,i)=>i===selected?{...x,name}:x)))}>编辑</Button></SectionHead><div className="info-grid"><div><span>所属项目</span><b>{ctx.project}</b></div><div><span>输出模板</span><b>标准分析报告</b></div></div><h3>描述</h3><p>{skill.desc}</p><h3>使用场景</h3><div className="callout">{skill.scene}</div><h3>引用分析包</h3><div className="chips">{skill.pkg.split(" · ").map(x=><button key={x} onClick={()=>{setTab("分析包");setQ(x)}}>{x} ↗</button>)}</div><h3>执行步骤</h3><ol className="steps"><li><b>确认问题与口径</b><p>识别指标、时间范围和目标群体，确认分析边界。</p></li><li><b>获取与验证数据</b><p>沿业务过程查找资产，完成查询并校验结果。</p></li><li><b>按分析包展开</b><p>对比趋势、拆分维度与证据，形成可核验结论。</p></li></ol></div></div>:<><Stats items={[["分析包总数","8"],["方法型","6"],["场景型","2"],["已启用","8"]]}/><Select label="分类" options={["全部类型","方法型","场景型"]} value={kind} onChange={setKind}/><div className="pack-grid">{DEMO.packs.filter(x=>x.join(" ").includes(q)&&(kind==="全部类型"||x[1]===kind)).map(p=><button className="pack" key={p[0]} onClick={()=>ctx.detail([p[0],p[1],p[2]])}><span className="pack-icon"><Icon name="spark"/></span><h3>{p[0]}</h3><p>{p[2]}</p><div><Badge>{p[1]}</Badge><Badge>已启用</Badge></div><small>成员 01 · 演示版本 v1.0</small></button>)}</div></>}</Panel></>;
+}
+function KnowledgePage({ctx}) {
+  const [q,setQ]=React.useState(""),[category,setCategory]=React.useState("全部知识"),[rows,setRows]=useDemoRows("knowledge",DEMO.knowledge);
+  const visible=category==="全部知识"?rows:rows.filter(x=>x[2]===category);
+  const add=()=>ctx.edit("新建知识","",name=>{setRows([[name,"补充业务说明","业务知识","未发布","草稿","成员 01"],...rows]);ctx.toast("知识草稿已创建")});
+  return <><Stats items={[["知识总数",rows.length,"当前项目的演示资料"],["已发布",rows.filter(x=>x[4]==="已发布").length,"可供问数引用"],["草稿",rows.filter(x=>x[4]==="草稿").length,"待审核与发布"]]}/><Panel><SectionHead title="项目知识" desc="发布版本用于问数召回，草稿保留编辑记录"><Button onClick={()=>ctx.edit("批量导入知识","",()=>ctx.toast("演示导入已完成"))}>批量导入</Button><Button primary onClick={add}>＋ 新建知识</Button></SectionHead><div className="taxonomy-layout"><aside className="taxonomy"><h3>知识分类</h3>{["全部知识","业务知识","运营活动","玩法规则","版本公告"].map(x=><button key={x} className={x===category?"selected":""} onClick={()=>setCategory(x)}>{x}<small>{x==="全部知识"?rows.length:rows.filter(r=>r[2]===x).length}</small></button>)}</aside><div className="taxonomy-content"><SearchBar query={q} setQuery={setQ}/><DataTable headers={["知识标题","内容摘要","分类","当前版本","状态","创建人"]} rows={visible} query={q} {...useTableActions(ctx,rows,setRows,"知识")} actions={["编辑","版本记录"]}/></div></div></Panel></>;
+}
+function DomainsPage({ctx}) {
+  const [domain,setDomain]=React.useState("用户域"),[process,setProcess]=React.useState("登录行为"),[q,setQ]=React.useState("");
+  const domains={"用户域":["登录行为","用户留存","新用户转化"],"付费域":["支付行为","付费转化"],"运营域":["活动参与","渠道分析"],"公共域":["渠道维度","项目配置"]};
+  return <Panel><div className="domain-layout"><aside className="domain-tree"><SectionHead title="业务域 / 业务过程"><Button quiet onClick={()=>ctx.edit("新增业务域","",()=>ctx.toast("演示业务域已保存"))}>＋</Button></SectionHead>{Object.entries(domains).map(([d,ps])=><section key={d}><button className={`domain-heading ${domain===d?"selected":""}`} onClick={()=>{setDomain(d);setProcess(ps[0])}}><Icon name="layers"/><b>{d}</b><small>{ps.length} 个过程</small></button>{domain===d&&ps.map(p=><button key={p} className={`process ${process===p?"selected":""}`} onClick={()=>setProcess(p)}>{p}<small>关联指标与数据表</small></button>)}</section>)}</aside><div className="domain-assets"><SectionHead title={process+" · 关联资产"} desc="从业务过程查看指标、数据表与所属项目"><Button onClick={()=>ctx.navigate("metrics")}>查看指标 ↗</Button></SectionHead><SearchBar query={q} setQuery={setQ}/>{DEMO.projects.slice(0,2).map((p,i)=><div className="project-assets" key={p}><h3><Icon name="layers"/>{p}<Badge>{i+2} 张关联表</Badge></h3><DataTable headers={["表名","层级","业务说明","业务域","字段数","状态"]} rows={DEMO.tables.filter(x=>x[3]===domain)} query={q} onDetail={ctx.detail}/></div>)}</div></div></Panel>;
+}
+function WarehousePage({ctx}) {
+  const [tab,setTab]=React.useState("分层概览"),[layer,setLayer]=React.useState("全部层级"),[q,setQ]=React.useState("");
+  const layers=[["ODS","贴源层","保留原始业务事件，面向数据接入与追溯。"],["DWD","明细层","清洗并标准化，记录细粒度业务过程。"],["DWS","汇总层","按主题与粒度聚合，服务常用指标计算。"],["ADS","应用层","面向报告、看板与专题分析输出结果。"]];
+  return <><Tabs items={["分层概览","资产清单"]} value={tab} onChange={setTab}/><Stats items={[["数仓层级","5","ODS / DWD / DWS / ADS / DIM"],["演示资产","7","仅展示虚构表结构"],["信息完整度","96%","演示统计"]]}/><Panel>{tab==="分层概览"?<><SectionHead title="数仓分层架构" desc="点击层级查看对应数据资产；DIM 为跨层复用的公共维度"/><div className="layer-flow">{layers.map((x,i)=><React.Fragment key={x[0]}><button className={`layer-card layer-${i}`} onClick={()=>{setLayer(x[0]);setTab("资产清单")}}><span className="layer-icon"><Icon name="layers"/></span><h2>{x[0]}</h2><small>{x[1]}</small><p>{x[2]}</p><Badge>{DEMO.tables.filter(t=>t[1]===x[0]).length} 个演示资产</Badge><span className="layer-link">查看资产 →</span></button>{i<3&&<span className="flow-arrow">→</span>}</React.Fragment>)}</div><button className="dim-card" onClick={()=>{setLayer("DIM");setTab("资产清单")}}><span className="layer-icon"><Icon name="gauge"/></span><div><h2>DIM <small>公共维度层</small></h2><p>统一渠道、区域、项目等维度口径，与各层数据表关联。</p></div><span className="spacer"/><Badge>查看维度资产 →</Badge></button></>:<><SectionHead title="数据资产" desc="表结构、注释与业务关联集中展示"><Button onClick={()=>ctx.navigate("connections")}>管理连接源 ↗</Button></SectionHead><SearchBar query={q} setQuery={setQ}><Select label="层级" options={["全部层级","ODS","DWD","DWS","ADS","DIM"]} value={layer} onChange={setLayer}/></SearchBar><DataTable headers={["表名","层级","说明","业务域","字段数","状态"]} rows={DEMO.tables.filter(x=>layer==="全部层级"||x[1]===layer)} query={q} onDetail={ctx.detail} actions={["查看结构"]}/></>}</Panel></>;
+}
+function MetricsPage({ctx}) {
+  const [q,setQ]=React.useState(""),[kind,setKind]=React.useState("全部类型"),[rows,setRows]=useDemoRows("metrics",DEMO.metrics);
+  return <><Stats items={[["演示指标",rows.length],["可用指标",rows.filter(x=>x[5]==="可用").length],["原子指标",rows.filter(x=>x[1]==="原子指标").length],["派生 / 复合",rows.filter(x=>x[1]!=="原子指标").length]]}/><Panel><SectionHead title="指标资产" desc="口径、来源、业务域与可用状态关联维护"><Button onClick={()=>ctx.navigate("drafts")}>我的草稿 ↗</Button><Button primary onClick={()=>ctx.edit("新增指标","",name=>{setRows([[name,"原子指标","用户域","登录行为","demo_dws.user_daily","不可用"],...rows]);ctx.toast("指标已保存为演示草稿")})}>＋ 新增指标</Button></SectionHead><SearchBar query={q} setQuery={setQ}><Select label="类型" options={["全部类型","原子指标","派生指标","复合指标"]} value={kind} onChange={setKind}/></SearchBar><DataTable headers={["指标名称","指标类型","业务域","业务过程","来源表","可用状态"]} rows={rows.filter(x=>kind==="全部类型"||x[1]===kind)} query={q} selectable {...useTableActions(ctx,rows,setRows,"指标")} actions={["查看","编辑"]}/></Panel></>;
+}
+function ConnectionsPage({ctx}) {
+  const [q,setQ]=React.useState(""),[rows,setRows]=useDemoRows("connections",DEMO.connections);
+  return <Panel><SectionHead title="项目连接源" desc="维护数据源、问数开关与元数据同步状态"><Button primary onClick={()=>ctx.edit("新增连接源","",name=>{setRows([[ctx.project,name,"StarRocks","new-source.example.invalid","未启用","未同步"],...rows]);ctx.toast("演示连接源已保存")})}>＋ 新增连接源</Button></SectionHead><SearchBar query={q} setQuery={setQ}/><div className="notice"><Icon name="shield"/>原型中的主机均使用不可解析的演示域名，凭据不会在页面中展示。</div><DataTable headers={["项目名称","连接源名称","数据库类型","主机地址","问数状态","同步状态"]} rows={rows} query={q} {...useTableActions(ctx,rows,setRows,"连接源")} actions={["编辑","测试连接"]}/></Panel>;
+}
+function DraftsPage({ctx}) {
+  const [tab,setTab]=React.useState("指标草稿"),[q,setQ]=React.useState(""),[sent,setSent]=React.useState(false);
+  const rows=tab==="指标草稿"?[["新用户转化率","复合指标","用户域","demo_dws.user_daily",sent?"已提交":"草稿","成员 01"],["活动留存率","派生指标","运营域","demo_dws.event_daily","草稿","成员 02"]]:tab==="表归类草稿"?[["demo_dwd.payment_event","DWD","付费域","支付行为",sent?"已提交":"草稿","成员 01"]]:[["demo_dws.user_daily","DWS","用户域","字段说明补充",sent?"已提交":"草稿","成员 01"]];
+  return <><Tabs items={["指标草稿","表归类草稿","表详情草稿"]} value={tab} onChange={setTab}/><Panel><SectionHead title={tab} desc="三类草稿使用同一提交入口，保留各自的对象与审核状态"><Button primary onClick={()=>{setSent(true);ctx.toast("当前演示草稿已提交")}}>提交当前草稿</Button></SectionHead><SearchBar query={q} setQuery={setQ}/><DataTable headers={["名称","类型 / 层级","业务域","来源 / 修改内容","草稿状态","提交人"]} rows={rows} query={q} selectable onDetail={ctx.detail} onEdit={r=>ctx.edit("编辑草稿",r[0],()=>ctx.toast("草稿已保存"))} actions={["查看","编辑"]}/></Panel></>;
+}
+function ModelsPage({ctx}) {
+  const [tab,setTab]=React.useState("框架与模式"),[deep,setDeep]=React.useState("Claude Agent SDK"),[fast,setFast]=React.useState("Codex SDK"),[saved,setSaved]=React.useState(false);
+  const opts=["Claude Agent SDK","Codex SDK","ReAct 引擎"];
+  return <><Tabs items={["框架与模式","模型厂商","模型列表","变更记录"]} value={tab} onChange={setTab}/><Panel>{tab==="框架与模式"?<><SectionHead title="模式路由" desc="模式选择运行框架，框架再按复杂度选择模型"/><div className="route-selects"><Select label="目标实例" options={["演示环境","演示预发布"]}/><Select label="深度模式" options={opts} value={deep} onChange={x=>{setDeep(x);setSaved(false)}}/><Select label="快速模式" options={opts} value={fast} onChange={x=>{setFast(x);setSaved(false)}}/></div><h3 className="block-title">框架与过程模型</h3><div className="framework-grid">{opts.map((x,i)=><div className="framework" key={x}><div className="framework-title"><Icon name="cpu"/><h3>{x}</h3><Badge>{i===0?"深度":i===1?"快速":"通用"}</Badge></div>{["低档","中档","高档"].map((l,j)=><Select key={l} label={l} options={[`演示模型 ${["Lite","Standard","Pro"][j]} · 厂商 A`,`演示模型 ${["Lite","Standard","Pro"][j]} · 厂商 B`]}/>)}</div>)}</div><h3 className="block-title">结果与分析模型</h3><div className="result-models"><Select label="主模型" options={["演示内网模型 · Internal","演示内网模型 · Alternate"]}/><Select label="兜底模型" options={["演示备用模型 · Internal","演示备用模型 · Alternate"]}/></div><div className="save-row"><Button primary onClick={()=>{setSaved(true);ctx.toast("演示配置校验通过，已保存")}}>校验并保存</Button><span className="muted">{saved?"✓ 本地演示配置已保存":"仅演示配置操作，不连接实际模型服务"}</span></div></>:<><SectionHead title={tab}/><DataTable headers={tab==="变更记录"?["版本","变更内容","更新人","状态"]:["名称","类型","数据范围","状态"]} rows={tab==="模型厂商"?[["演示厂商 A","兼容协议","内部","已启用"],["演示厂商 B","兼容协议","元数据","已启用"]]:tab==="模型列表"?[["演示模型 Lite","轻量","元数据","已启用"],["演示模型 Standard","标准","元数据","已启用"],["演示内网模型","结果分析","内部","已启用"]]:[["v3","调整快速模式框架","成员 01","已生效"],["v2","新增备用结果模型","成员 02","已生效"]]} onDetail={ctx.detail}/></>}</Panel></>;
+}
+function MCPPage({ctx}) {
+  const [tab,setTab]=React.useState("我的接入"),[q,setQ]=React.useState(""),[active,setActive]=React.useState(false);
+  return <><Tabs items={ctx.role==="系统管理员"?["我的接入","接入用户"]:["我的接入"]} value={tab} onChange={setTab}/>{tab==="我的接入"?<div className="mcp-layout"><Panel><SectionHead title="平台 MCP" desc="在支持 MCP 的客户端中使用平台查询与治理能力"/><div className="mcp-service"><span className="service-icon"><Icon name="plug"/></span><div><h2>数据查询 MCP</h2><p>查找指标、读取元数据、执行获准的演示查询</p></div><Badge>已开放</Badge></div><h3>我的可用项目</h3><div className="chips">{DEMO.projects.map(x=><span key={x}>{x}</span>)}</div><div className="service-bottom"><span className="muted">12 个演示工具 · 沿用项目权限</span><Button onClick={()=>ctx.detail(["数据查询 MCP","工具清单","已开放"])}>查看工具</Button></div><h3>接入配置</h3><div className="code-label"><span>客户端示例配置</span><Button quiet onClick={()=>{setActive(true);ctx.toast("演示配置已准备；服务地址不可连接")}}>获取配置</Button></div><pre className="code">{JSON.stringify({mcpServers:{"demo-query":{url:"https://mcp.example.invalid/query",headers:{Authorization:active?"Bearer <YOUR_TOKEN>":"<填写个人凭据>"}}}},null,2)}</pre><div className="actions"><Button onClick={()=>ctx.navigate("audit","MCP")}>查看调用记录 ↗</Button></div></Panel><Panel className="mcp-help"><span className="eyebrow">接入指南</span><h2>三步开始使用</h2><ol className="steps"><li><b>确认项目权限</b><p>仅开放已授权项目与数据范围。</p></li><li><b>配置客户端</b><p>将个人接入配置填入支持 MCP 的客户端。</p></li><li><b>发起查询</b><p>工具调用遵循同一授权与审计规则。</p></li></ol><div className="callout">接入权限与页面权限分别管理，SQL 查询需显式授权。</div></Panel></div>:<Panel><SectionHead title="接入用户" desc="按用户管理项目、SQL 查询许可与 IP 白名单"><Button primary onClick={()=>ctx.edit("新增接入用户","",()=>ctx.toast("演示接入用户已添加"))}>＋ 新增用户</Button></SectionHead><SearchBar query={q} setQuery={setQ}/><DataTable headers={["用户","部门","可用 MCP / 项目","SQL 查询许可","IP 策略"]} rows={[["成员 01","示例数据组","查询 MCP · 项目 A","已授权","限定白名单"],["成员 02","示例运营组","查询 MCP · 项目 B","未授权","限定白名单"],["成员 03","示例研发组","治理 MCP · 项目 C","未授权","限定白名单"]]} query={q} onDetail={ctx.detail} actions={["查看配置","IP 白名单"]}/></Panel>}</>;
+}
+function SecurityPage({ctx}) {
+  const [tab,setTab]=React.useState("成员与角色"),[role,setRole]=React.useState("数据分析师"),[q,setQ]=React.useState(""),[policy,setPolicy]=React.useState("全部策略");
+  const roles=["数据分析师","运营分析","项目管理员","内容维护"];
+  return <><Tabs items={["成员与角色","数据策略","资产分级","系统角色","项目管理"]} value={tab} onChange={setTab}/>{tab==="成员与角色"?<><Stats items={[["演示角色","4"],["管理页面","13"],["管理资产","7"],["角色成员","6"]]}/><Panel><div className="master-detail"><aside className="role-list"><SectionHead title="角色管理"/><Button primary onClick={()=>ctx.edit("新建角色","",()=>ctx.toast("演示角色已创建"))}>＋ 新建角色</Button>{roles.map((x,i)=><button className={role===x?"selected":""} key={x} onClick={()=>setRole(x)}><span className={`avatar avatar-${i}`}>{x[0]}</span><div><b>{x}</b><small>自定义 · {i+1} 名成员</small></div></button>)}</aside><div className="detail-content"><SectionHead title={role} desc="项目 A · 业务角色"><Button onClick={()=>setTab("数据策略")}>查看绑定策略 ↗</Button><Button primary onClick={()=>ctx.edit("添加成员","",()=>ctx.toast("演示成员已添加"))}>＋ 添加成员</Button></SectionHead><div className="callout">页面权限与数据权限分别授权。当前角色可查看用户域与运营域的汇总资产。</div><DataTable headers={["成员","部门","加入方式","状态"]} rows={[["成员 01","示例分析组","管理员添加","正常"],["成员 02","示例运营组","申请审批","正常"]]} onDetail={ctx.detail}/><h3>权限范围</h3><div className="permission-grid">{["智能问数","订阅中心","指标只读","知识引用"].map(x=><div key={x}><span className="ok">✓</span>{x}</div>)}</div></div></div></Panel></>:tab==="资产分级"?<><div className="classification-grid">{[["P0","核心敏感","默认禁用，审批后开放"],["P1","高敏感","显式授权，聚合脱敏"],["P2","内部数据","限定项目与业务范围"],["P3","一般数据","按业务权限查询"]].map(([p,n,d])=><button key={p} className={"classification "+p} onClick={()=>setQ(p)}><Badge>{p}</Badge><h3>{n}</h3><p>{d}</p></button>)}</div><Panel><SectionHead title="资产安全分级" desc="分级策略决定默认访问边界"/><SearchBar query={q} setQuery={setQ}/><DataTable headers={["表名","业务域","表说明","分级","默认策略"]} rows={[["demo_dwd.payment_event","付费域","支付行为明细","P0","审批后开放"],["demo_dim.user","用户域","用户基础维度","P1","显式授权与脱敏"],["demo_dws.user_daily","用户域","用户日粒度汇总","P2","项目内授权"],["demo_dim.channel","公共域","公共渠道维度","P3","业务授权"]]} query={q} onDetail={ctx.detail} actions={["调整分级"]}/></Panel></>:<Panel><SectionHead title={tab} desc={tab==="数据策略"?"按业务域和资产范围定义角色可查询的数据":tab==="系统角色"?"系统管理权限与项目数据权限分别生效":"按项目管理负责人、管理员与 MCP 开放范围"}><Button primary onClick={()=>ctx.edit("新增"+tab,"",()=>ctx.toast("演示配置已保存"))}>＋ 新增</Button></SectionHead><SearchBar query={q} setQuery={setQ}/><DataTable headers={tab==="数据策略"?["策略名称","业务域","资产范围","成员数","状态"]:tab==="系统角色"?["成员","部门","系统角色","管理范围","数据权限"]:["项目","负责人","项目管理员","项目成员","MCP 开放"]} rows={tab==="数据策略"?[["用户分析策略","用户域 · 公共域","4 张演示表","2 人","已启用"],["运营分析策略","运营域 · 用户域","5 张演示表","3 人","已启用"],["项目全域策略","全部业务域","7 张演示表","1 人","已启用"]]:tab==="系统角色"?[["成员 01","示例平台组","系统管理员","平台全局配置","按项目授权"],["成员 02","示例数据组","数据管理员","治理与资产","按项目授权"]]:DEMO.projects.map((p,i)=>[p,`负责人 ${i+1}`,`管理员 ${i+1}`,`${i+2} 人`,"查询 MCP · 治理 MCP"])} query={q} onDetail={ctx.detail} actions={["查看","配置"]}/></Panel>}</>;
+}
+function AuditPage({ctx}) {
+  const [tab,setTab]=React.useState(ctx.initialTab||"问数"),[q,setQ]=React.useState(""),[status,setStatus]=React.useState("全部结果"),[range,setRange]=React.useState("近七日");
+  const rows=DEMO.logs[tab].filter(x=>status==="全部结果"||x[4]===status);
+  return <><Tabs items={["问数","订阅推送","分享","授权","MCP"]} value={tab} onChange={x=>{setTab(x);setQ("");setStatus("全部结果")}}/>{tab==="问数"&&<><Stats items={[["Token 用量","128.6k","演示累计"],["调用次数","36","近七日演示统计"],["平均耗时","12.8 秒","演示指标"],["成功率","94.4%","演示指标"]]}/><Panel><LineChart/></Panel></>}<Panel><SectionHead title={tab+"记录"} desc="保留各类型日志的专属字段，并支持关联业务对象"><Button onClick={()=>ctx.toast("已导出演示日志")}>导出</Button>{tab==="订阅推送"&&<Button onClick={()=>ctx.navigate("subscriptions")}>返回订阅中心 ↗</Button>}{tab==="MCP"&&<Button onClick={()=>ctx.navigate("mcp")}>返回 MCP 接入 ↗</Button>}</SectionHead><SearchBar query={q} setQuery={setQ}><Select label="结果" options={["全部结果","成功","失败","已拦截","有效","已过期"]} value={status} onChange={setStatus}/><Select label="时间" options={["近七日","今天","近三十日"]} value={range} onChange={x=>{setRange(x);ctx.toast("时间范围已切换为 "+x+"（演示记录）")}}/></SearchBar><DataTable headers={[tab==="MCP"?"工具路由":"操作 / 会话名称","操作人","项目","类型 / 来源","结果","耗时","Token"]} rows={rows} query={q} onDetail={ctx.detail} actions={["查看详情"]}/></Panel></>;
+}
+Object.assign(window,{Panel,SectionHead,AskPage,SubscriptionPage,AbilitiesPage,KnowledgePage,DomainsPage,WarehousePage,MetricsPage,ConnectionsPage,DraftsPage,ModelsPage,MCPPage,SecurityPage,AuditPage});
+
+</script>
+  <script type="text/babel">function App() {
+  const [tweaks,setTweak]=useTweaks(TWEAK_DEFAULTS);
+  const params=new URLSearchParams(location.search), requested=params.get('page')||'ask';
+  const [role,setRole]=React.useState(()=>localStorage.getItem('prototype-v2-role')||'系统管理员');
+  const [project,setProject]=React.useState(()=>localStorage.getItem('prototype-v2-project')||DEMO.projects[0]);
+  const [collapsed,setCollapsed]=React.useState(false),[groups,setGroups]=React.useState(()=>Object.fromEntries(DEMO.groups.map(g=>[g.name,!g.items.some(i=>i[0]===requested)]))),[toast,setToast]=React.useState('');
+  const [editor,setEditor]=React.useState(null),[detail,setDetail]=React.useState(null),[design,setDesign]=React.useState(false);
+  const [detailTab,setDetailTab]=React.useState('基本信息');
+  const visible=DEMO.groups.filter(x=>x.level<=DEMO.roles[role]);
+  const entries=visible.flatMap(x=>x.items), page=entries.some(x=>x[0]===requested)?requested:'ask';
+  const group=visible.find(x=>x.items.some(i=>i[0]===page));
+  const [opened,setOpened]=React.useState(()=>{try {const prev=JSON.parse(sessionStorage.getItem('prototype-v2-tabs'))||['ask'];return [...new Set([...prev,page])].slice(-7)}catch{return ['ask',page]}});
+  React.useEffect(()=>{localStorage.setItem('prototype-v2-role',role)},[role]);
+  React.useEffect(()=>{localStorage.setItem('prototype-v2-project',project)},[project]);
+  React.useEffect(()=>{sessionStorage.setItem('prototype-v2-tabs',JSON.stringify(opened))},[opened]);
+  React.useEffect(()=>{if(toast){const t=setTimeout(()=>setToast(''),3000);return()=>clearTimeout(t)}},[toast]);
+  const href=(id,tab)=>`${location.pathname}?page=${id}${tab?'&tab='+encodeURIComponent(tab):''}`;
+  const navigate=(id,tab)=>{location.href=href(id,tab)};
+  const ctx={role,project,navigate,initialTab:params.get('tab'),toast:setToast,detail:(r,action)=>{if(action==='立即发送'||action==='测试连接'){setToast(action==='立即发送'?'演示推送已执行':'演示连接检查通过（未连接真实服务）');return}setDetail(r);setDetailTab('基本信息')},edit:(title,initial,save)=>setEditor({title,initial,save})};
+  const components={ask:AskPage,subscriptions:SubscriptionPage,mcp:MCPPage,abilities:AbilitiesPage,knowledge:KnowledgePage,domains:DomainsPage,warehouse:WarehousePage,metrics:MetricsPage,connections:ConnectionsPage,drafts:DraftsPage,models:ModelsPage,security:SecurityPage,audit:AuditPage};
+  const Page=components[page];
+  return <div className={`app ${collapsed?'collapsed':''} ${tweaks.density==='紧凑'?'compact':''}`} style={{'--primary':tweaks.primaryColor,'--nav-width':collapsed?'64px':'218px'}} data-screen-label="智能问数平台原型 · 脱敏演示">
+    <header className="global-header"><a className="logo" href={href('ask')}><span className="logo-symbol">◈</span><b>DATA<span>HUB</span></b></a><nav><span>管理门户</span><span>查询系统</span><a className="current" href={href('ask')}>智能问数</a><button onClick={()=>setDesign(true)}>导航方案</button></nav><span className="spacer"/><span className="demo-chip">脱敏演示</span><button className="header-icon" aria-label="打开风格设置" onClick={()=>window.postMessage({type:'miaoda:tweaks:activate'},'*')}><Icon name="palette"/></button><span className="user-avatar">演</span><span>演示用户</span></header>
+    <aside className="sidebar"><div className="sidebar-title"><Icon name="bot"/>{!collapsed&&<strong>智能问数平台</strong>}</div>{!collapsed&&<div className="role-selector"><span>角色视角</span><select aria-label="角色视角" value={role} onChange={e=>setRole(e.target.value)}>{Object.keys(DEMO.roles).map(x=><option key={x}>{x}</option>)}</select></div>}<nav className="side-nav" aria-label="主导航">{visible.map(g=><section key={g.name}><button className="group-label" aria-expanded={!groups[g.name]} onClick={()=>{if(collapsed)setCollapsed(false);setGroups({...groups,[g.name]:!groups[g.name]})}}><Icon name={g.icon}/>{!collapsed&&<><span>{g.name}</span><span className={'chevron '+(!groups[g.name]?'down':'')}><Icon name="chevron"/></span></>}</button>{!collapsed&&!groups[g.name]&&<div className="nav-items">{g.items.map(([id,name])=><a key={id} href={href(id)} className={page===id?'active':''}><span>{name}</span>{tweaks.showCounts&&id==='drafts'&&<small>4</small>}</a>)}</div>}</section>)}</nav><div className="sidebar-bottom">{!collapsed&&<span>{entries.length} 个入口 · {role}</span>}<button aria-label={collapsed?'展开侧栏':'收起侧栏'} onClick={()=>setCollapsed(!collapsed)}><Icon name="layers"/></button></div></aside>
+    <main className="main"><div className="opened-tabs">{opened.filter(id=>entries.some(x=>x[0]===id)).map(id=><div className={page===id?'active':''} key={id}><a href={href(id)}>{DEMO.meta[id][0]}</a>{id!==page&&<button aria-label={'关闭 '+DEMO.meta[id][0]} onClick={()=>setOpened(opened.filter(x=>x!==id))}>×</button>}</div>)}<span className="spacer"/><button className="tab-clean" onClick={()=>setOpened([page])}>关闭其他</button></div><div className="context-bar"><div><span>{group.name}</span><i>/</i><b>{DEMO.meta[page][0]}</b></div><Select label="当前项目" options={DEMO.projects} value={project} onChange={setProject}/></div><div className={'page-content '+(page==='ask'?'ask-content':'')} key={page}>{page!=='ask'&&<div className="page-title"><div><h1>{DEMO.meta[page][0]}</h1><p>{DEMO.meta[page][1]}</p></div><span className="subtle-badge">演示环境</span></div>}<Page ctx={ctx}/></div></main>
+    {editor&&<EditForm title={editor.title} initial={editor.initial} onClose={()=>setEditor(null)} onSave={name=>{editor.save(name);setEditor(null);setToast('演示内容已保存')}}/>}
+    {detail&&<Sheet title={detail[0]} onClose={()=>setDetail(null)}><Tabs items={['基本信息','关联与口径','SQL 示例']} value={detailTab} onChange={setDetailTab}/>{detailTab==='基本信息'?<><div className="detail-summary"><Badge>虚构演示</Badge><p>当前项目：{project}</p><p>该详情用于演示原页面的查看、版本与关联能力。</p></div><dl className="detail-fields">{detail.map((x,i)=><React.Fragment key={i}><dt>{['名称','类型 / 来源','业务域 / 状态','范围 / 模式','结果 / 状态','负责人 / 耗时','用量'][i]||'字段 '+(i+1)}</dt><dd>{x}</dd></React.Fragment>)}</dl>{String(detail[0]).includes('demo_')&&<><h3>演示字段</h3><DataTable headers={['字段','类型','说明']} rows={[[ 'business_date','DATE','业务日期'],['channel_code','VARCHAR','演示渠道编码'],['metric_value','DECIMAL','演示聚合值']]} actions={[]}/></>}</>:detailTab==='关联与口径'?<><h3>业务定义</h3><div className="callout">按业务日统计，限定当前项目与已授权范围。比率使用同一统计窗口与可比群体。</div><h3>关联资产</h3><div className="chips"><span>用户域</span><span>demo_dws.user_daily</span><span>渠道维度</span></div><h3>操作记录</h3><p className="muted">演示版本 v1.0 · 成员 01 编辑 · 2026-10-12</p></>:<><p className="muted">仅用于说明界面布局，以下 SQL 不会执行。</p><pre className="code">{'SELECT\n  business_date,\n  channel_code,\n  SUM(metric_value) AS metric_value\nFROM demo_dws.user_daily\nWHERE business_date >= \'2026-10-07\'\n  AND business_date <  \'2026-10-14\'\nGROUP BY business_date, channel_code;'}</pre><Badge>演示只读查询</Badge></>}</Sheet>}
+    {design&&<Sheet title="导航重组方案" wide onClose={()=>setDesign(false)}><div className="design-intro"><h2>四个分组，13 个侧栏入口</h2><p>按使用、分析内容、数据治理、平台管理组织。原有 22 个页面均保留入口或页面内标签，避免只减少菜单却丢失功能。</p><div className="chips"><span>工作台 3</span><span>分析与知识 2</span><span>数据治理 5</span><span>平台管理 3</span></div></div><DataTable headers={['原页面','新位置','调整理由']} rows={DEMO.mapping} actions={[]}/><div className="notice"><Icon name="shield"/>所有人员、项目、域名、表结构与统计值均为重新生成的演示内容；未嵌入原始截图。</div></Sheet>}
+    {toast&&<div className="toast" role="status"><span>✓</span>{toast}</div>}
+    <TweaksPanel title="风格"><TweakSection label="界面设置"/><TweakColor label="主色" value={tweaks.primaryColor} options={['#151C65','#315EFB','#4744A8']} onChange={v=>setTweak('primaryColor',v)}/><TweakRadio label="信息密度" value={tweaks.density} options={['紧凑','舒适']} onChange={v=>setTweak('density',v)}/><TweakToggle label="显示待办数量" value={tweaks.showCounts} onChange={v=>setTweak('showCounts',v)}/></TweaksPanel>
+  </div>;
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+</script>
+</body>
+</html>
+
