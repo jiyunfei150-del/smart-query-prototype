@@ -6,4 +6,4 @@
 
 支持角色视角、分组折叠、页面标签、筛选、详情抽屉与订阅表单。演示数据仅保存在当前浏览器，不连接业务后端。
 
-入口为 `index.html`，运行时需联网加载 React、Babel 和字体。通过 GitHub Pages 托管。
+入口为 `index.html`，运行时需联网加载 React、Babel、ECharts 和字体。通过 GitHub Pages 托管。

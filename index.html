@@ -23,6 +23,9 @@
 .tabs{overflow-x:auto;overflow-y:hidden}.page-title p,.section-head p{font-size:12px;color:#8793aa}.layer-card p{color:#71819c}.mode-desc{color:#8996ad}.taxonomy button,.nav-items a{font-size:12px}
 .mobile-menu-shade{display:none}@media(max-width:760px){.mobile-nav .sidebar{width:218px;box-shadow:12px 0 40px #16224b28}.mobile-nav .sidebar-title{padding:22px 21px 17px}.mobile-nav .sidebar-title strong{display:block}.mobile-nav .role-selector{display:block}.mobile-nav .nav-items{display:grid}.mobile-nav .group-label{justify-content:flex-start}.mobile-nav .group-label>span{display:block}.mobile-nav .group-label>span:nth-child(2){flex:1}.mobile-nav .sidebar-bottom>span{display:block}.mobile-nav .mobile-menu-shade{display:block;position:fixed;inset:54px 0 0;background:#17224330;z-index:19;cursor:default}}
 .account-menu-wrap{position:relative}.account-trigger{display:flex;align-items:center;gap:8px;color:#e7e9fb;padding:2px 0}.account-name{font-size:12px}.account-chevron{font-size:14px;color:#bfc5e6}.account-menu{position:absolute;top:42px;right:0;width:210px;background:white;border:1px solid #e3e8f2;border-radius:8px;box-shadow:0 12px 36px #15244b26;padding:7px;color:#586983;z-index:45}.account-summary{padding:11px 12px 13px;margin-bottom:5px;border-bottom:1px solid #edf0f7}.account-summary b{display:block;font-size:12px;color:#384866}.account-summary small{display:block;font-size:10px;color:#96a1b5;margin-top:5px}.account-menu>a,.account-menu>button{display:flex;align-items:center;gap:10px;padding:12px;width:100%;border-radius:5px;font-size:12px;text-align:left}.account-menu>a:hover,.account-menu>button:hover{background:#f1f3fc;color:var(--primary)}.account-menu .icon{color:#8894b5;width:16px;height:16px}@media(max-width:760px){.account-name{display:none}.account-trigger{gap:4px}.account-menu{top:42px;right:-3px}}
+.usage-overview{padding:23px 22px 14px}.usage-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:23px}.usage-heading>div:first-child{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.usage-heading h2{font-size:16px;color:#26354d}.usage-heading>div>span{font-size:12px;color:#8f9bb0}.usage-period{display:flex;align-items:center;padding:3px;gap:3px;border:1px solid #e5e9f1;border-radius:10px;white-space:nowrap}.usage-period button{padding:7px 12px;border-radius:7px;color:#8190a8;font-size:12px}.usage-period .active{background:var(--primary);color:white}.usage-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}.usage-metric{min-width:0}.usage-summary{display:flex;align-items:center;flex-wrap:wrap;gap:7px;min-height:37px;margin-bottom:7px;font-variant-numeric:tabular-nums}.usage-label{color:#7f8ea5;font-size:12px;white-space:nowrap}.usage-summary strong{color:#20324b;font-size:24px;line-height:1.4;letter-spacing:-.6px}.usage-summary small{font-size:10px;color:#98a3b7;white-space:nowrap}.usage-square-key{width:9px;height:9px;display:inline-block;border-radius:2px;flex-shrink:0}.usage-line-key{width:15px;height:0;border-top:2px solid;flex-shrink:0}.usage-notes{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid #f0f2f7;padding-top:12px;margin-top:8px;color:#a0aabb;font-size:10px}.compact .usage-overview{padding:20px 18px 12px}@media(min-width:1700px){.usage-grid{gap:38px}.usage-summary strong{font-size:29px}.usage-label{font-size:14px}.usage-summary small{font-size:12px}.usage-heading h2{font-size:18px}.usage-heading>div>span{font-size:14px}}@media(max-width:1100px){.usage-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}.usage-summary strong{font-size:26px}.usage-heading{align-items:flex-start}.usage-heading>div:first-child{gap:5px;display:grid}}@media(max-width:760px){.usage-grid{grid-template-columns:1fr;gap:20px}.usage-heading{flex-wrap:wrap;margin-bottom:17px}.usage-overview{padding:18px 14px}.usage-heading h2{font-size:15px}.usage-heading>div>span{font-size:11px}.usage-summary strong{font-size:28px}.usage-label{font-size:13px}.usage-notes{font-size:10px}.usage-period button{padding:6px 11px}}
+.usage-summary{height:58px;align-content:center;margin-bottom:0}
+.usage-chart{width:100%;height:300px;min-height:300px}
 </style>
 </head>
 <body>
@@ -30,6 +33,7 @@
   <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
   <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
   <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+  <script src="https://sf3-scmcdn-cn.feishucdn.com/obj/feishu-static/miaoda/coding-unpkg-sdk/echarts@5.6.0/dist/echarts.min.js" crossorigin="anonymous"></script>
   <script type="text/babel">
     const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
       "primaryColor": "#151C65",
@@ -946,6 +950,52 @@ Object.assign(window,{Badge,Button,Tabs,Stats,SearchBar,Select,DataTable,LineCha
 
 
 </script>
+  <script type="text/babel">// All quantities are fictional; totals and per-session costs use one shared daily series.
+function makeUsageDemo(days) {
+  const end = new Date(Date.UTC(2026,9,10));
+  const lastWeek = [[0,0,0],[0,0,0],[0,0,0],[0,0,0],[20,11.4,5.6],[52,39.8,28.6],[64,27.2,17.28]];
+  return Array.from({length:days},(_,i)=>{
+    const date = new Date(end.getTime()-(days-1-i)*86400000);
+    const iso = date.toISOString().slice(0,10);
+    const holiday = iso>='2026-10-01'&&iso<='2026-10-07';
+    let sessions = holiday?0:Math.max(6,Math.round(29+17*Math.sin(i*.43)+9*Math.cos(i*.19)));
+    let tokens = Number((sessions*(.38+(i%6)*.055)).toFixed(2));
+    let cost = Number((sessions*(.19+(i%9)*.038)).toFixed(2));
+    if(i>=days-7) [sessions,tokens,cost]=lastWeek[i-(days-7)];
+    return {date:iso,label:iso.slice(5),sessions,tokens,cost,average:sessions?cost/sessions:null,holiday};
+  });
+}
+function UsageMiniChart({data,field,color,line=false,mean}) {
+  const ref=React.useRef(null);
+  React.useEffect(()=>{
+    const chart=echarts.init(ref.current,null,{renderer:"svg"});
+    const rawMax=Math.max(...data.map(d=>d[field]).filter(v=>v!==null),mean||0);
+    const steps=field==='sessions'?[30,60,90,120,180,240,360]:field==='tokens'?[10,20,40,60,80,120,180]:field==='cost'?[10,25,50,75,100,150,250]:[.25,.5,.75,1,1.5,2];
+    const max=steps.find(n=>n>=rawMax*1.12)||Math.ceil(rawMax*1.2);
+    const format=v=>field==='tokens'?Number(v).toFixed(1)+'M':field==='cost'||line?'$'+Number(v).toFixed(2):v+' 次';
+    const peak=data.findIndex(d=>d[field]===rawMax);
+    const dates=data.length===7?[0,2,4,6]:[0,Math.round((data.length-1)*.25),Math.round((data.length-1)*.5),Math.round((data.length-1)*.75),data.length-1];
+    const holidays=data.filter(d=>d.holiday);
+    const series={type:line?'line':'bar',data:data.map(d=>d[field]),itemStyle:{color,borderRadius:line?0:[3,3,0,0]},barMaxWidth:37,barWidth:'62%',connectNulls:false,symbolSize:data.length===7?7:3,showSymbol:data.length===7,lineStyle:{color,width:data.length===7?2.5:1.7},label:line?{show:false}:{show:true,position:'top',fontSize:12,fontWeight:600,formatter:p=>p.dataIndex===peak&&p.value>0?format(p.value):''}};
+    if(holidays.length) series.markArea={silent:true,itemStyle:{color:'#eef0f5'},label:{show:true,fontSize:11,position:'insideTop'},data:[[{name:'国庆',xAxis:holidays[0].date},{xAxis:holidays[holidays.length-1].date}]]};
+    if(line)series.markLine={silent:true,symbol:['none','none'],lineStyle:{color:'#a0a8b6',width:1.3,type:'solid'},label:{show:true,position:'insideStartTop',fontSize:10,formatter:()=>'均值 $'+mean.toFixed(2)},data:[{yAxis:mean}]};
+    chart.setOption({animation:false,textStyle:{fontFamily:'Noto Sans SC, Microsoft YaHei, sans-serif',color:'#7c8ba2'},grid:{left:48,right:15,top:30,bottom:30},tooltip:{trigger:'axis',confine:true,axisPointer:{type:line?'line':'shadow'},formatter:ps=>ps.filter(p=>p.componentType==='series').map(p=>p.axisValueLabel+'<br/>'+p.marker+(p.value===null||p.value===undefined?'无会话':format(p.value))).join('')},xAxis:{type:'category',data:data.map(d=>d.date),boundaryGap:true,axisLine:{lineStyle:{color:'#cbd2df'}},axisTick:{show:false},axisLabel:{fontSize:11,color:'#919cb0',interval:i=>dates.includes(i),formatter:v=>v.slice(5),hideOverlap:true}},yAxis:{type:'value',min:0,max,interval:max/(field==='cost'?2:3),axisLine:{show:false},axisTick:{show:false},axisLabel:{fontSize:11,color:'#8e9aaf',formatter:v=>field==='tokens'?Number(v).toFixed(0)+'M':field==='cost'?'$'+Number(v.toFixed(2)):line?'$'+Number(v.toFixed(2)):Math.round(v)},splitLine:{lineStyle:{color:'#e8ecf3'}}},series:[series]});
+    chart.group='query-usage-overview';echarts.connect('query-usage-overview');
+    const observer=new ResizeObserver(()=>chart.resize());observer.observe(ref.current);
+    return()=>{observer.disconnect();chart.dispose()};
+  },[data,field,color,line,mean]);
+  return <div ref={ref} className="usage-chart" data-usage-chart={field} role="img" aria-label={`${field==='sessions'?'每日会话数':field==='tokens'?'每日 Token':field==='cost'?'每日金额':'每日每会话花费'}趋势，${data.length} 天演示数据`}/>;
+}
+function UsageOverview() {
+  const [days,setDays]=React.useState(7);
+  const data=React.useMemo(()=>makeUsageDemo(days),[days]);
+  const totals=data.reduce((a,d)=>({sessions:a.sessions+d.sessions,tokens:a.tokens+d.tokens,cost:a.cost+d.cost}),{sessions:0,tokens:0,cost:0});
+  const mean=totals.sessions?totals.cost/totals.sessions:0;
+  const metrics=[['会话数',totals.sessions.toLocaleString()+' 次','合计 · 示意','sessions','#417bd3'],['Token',totals.tokens.toFixed(2)+'M','合计','tokens','#91b6ec'],['金额','$'+totals.cost.toFixed(2),'合计','cost','#df7844'],['每会话花费','$'+mean.toFixed(2),'均值 · 示意','average','#df7844']];
+  return <Panel className="usage-overview"><div className="usage-heading"><div><h2>每日会话数与消耗</h2><span>{data[0].label} 至 {data[data.length-1].label} · 按日</span></div><div className="usage-period" aria-label="用量统计周期">{[7,90].map(n=><button key={n} className={days===n?'active':''} aria-pressed={days===n} onClick={()=>{setDays(n)}}>近 {n} 天</button>)}</div></div><div className="usage-grid">{metrics.map(([label,value,hint,field,color])=><section className="usage-metric" key={field}><div className="usage-summary"><span className={field==='average'?'usage-line-key':'usage-square-key'} style={{background:field==='average'?'none':color,borderColor:color}}/><span className="usage-label">{label}</span><strong>{value}</strong><small>{hint}</small></div><UsageMiniChart data={data} field={field} color={color} line={field==='average'} mean={mean}/></section>)}</div><div className="usage-notes"><span>灰色区间为国庆假期 · 数值均为虚构演示</span><span>每会话花费 = 金额 ÷ 会话数；无会话日不绘制折线点</span></div></Panel>;
+}
+Object.assign(window,{makeUsageDemo,UsageOverview});
+</script>
   <script type="text/babel">function useDemoRows(key,initial) {
   const [rows,setRows]=React.useState(()=>{try{return JSON.parse(localStorage.getItem("demo-v2-"+key))||initial}catch{return initial}});
   React.useEffect(()=>{localStorage.setItem("demo-v2-"+key,JSON.stringify(rows))},[rows]);
@@ -1038,7 +1088,7 @@ function SecurityPage({ctx}) {
 function AuditPage({ctx}) {
   const [tab,setTab]=React.useState(ctx.initialTab||"问数"),[q,setQ]=React.useState(""),[status,setStatus]=React.useState("全部结果"),[range,setRange]=React.useState("近七日");
   const rows=DEMO.logs[tab].filter(x=>status==="全部结果"||x[4]===status);
-  return <><Tabs items={["问数","订阅推送","分享","授权","MCP"]} value={tab} onChange={x=>{setTab(x);setQ("");setStatus("全部结果")}}/>{tab==="问数"&&<><Stats items={[["Token 用量","128.6k","演示累计"],["调用次数","36","近七日演示统计"],["平均耗时","12.8 秒","演示指标"],["成功率","94.4%","演示指标"]]}/><Panel><LineChart/></Panel></>}<Panel><SectionHead title={tab+"记录"} desc="保留各类型日志的专属字段，并支持关联业务对象"><Button onClick={()=>ctx.toast("已导出演示日志")}>导出</Button>{tab==="订阅推送"&&<Button onClick={()=>ctx.navigate("subscriptions")}>返回订阅中心 ↗</Button>}{tab==="MCP"&&<Button onClick={()=>ctx.navigate("mcp")}>返回 MCP 接入 ↗</Button>}</SectionHead><SearchBar query={q} setQuery={setQ}><Select label="结果" options={["全部结果","成功","失败","已拦截","有效","已过期"]} value={status} onChange={setStatus}/><Select label="时间" options={["近七日","今天","近三十日"]} value={range} onChange={x=>{setRange(x);ctx.toast("时间范围已切换为 "+x+"（演示记录）")}}/></SearchBar><DataTable headers={[tab==="MCP"?"工具路由":"操作 / 会话名称","操作人","项目","类型 / 来源","结果","耗时","Token"]} rows={rows} query={q} onDetail={ctx.detail} actions={["查看详情"]}/></Panel></>;
+  return <><Tabs items={["问数","订阅推送","分享","授权","MCP"]} value={tab} onChange={x=>{setTab(x);setQ("");setStatus("全部结果")}}/>{tab==="问数"&&<UsageOverview/>}<Panel><SectionHead title={tab+"记录"} desc="保留各类型日志的专属字段，并支持关联业务对象"><Button onClick={()=>ctx.toast("已导出演示日志")}>导出</Button>{tab==="订阅推送"&&<Button onClick={()=>ctx.navigate("subscriptions")}>返回订阅中心 ↗</Button>}{tab==="MCP"&&<Button onClick={()=>ctx.navigate("mcp")}>返回 MCP 管理 ↗</Button>}</SectionHead><SearchBar query={q} setQuery={setQ}><Select label="结果" options={["全部结果","成功","失败","已拦截","有效","已过期"]} value={status} onChange={setStatus}/><Select label="时间" options={["近七日","今天","近三十日"]} value={range} onChange={x=>{setRange(x);ctx.toast("时间范围已切换为 "+x+"（演示记录）")}}/></SearchBar><DataTable headers={[tab==="MCP"?"工具路由":"操作 / 会话名称","操作人","项目","类型 / 来源","结果","耗时","Token"]} rows={rows} query={q} onDetail={ctx.detail} actions={["查看详情"]}/></Panel></>;
 }
 Object.assign(window,{Panel,SectionHead,AskPage,SubscriptionPage,AbilitiesPage,KnowledgePage,DomainsPage,WarehousePage,MetricsPage,ConnectionsPage,DraftsPage,ModelsPage,PersonalMCPPage,MCPAdminPage,SecurityPage,AuditPage});
 </script>
